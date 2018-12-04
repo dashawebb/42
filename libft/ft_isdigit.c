@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: creek <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 17:13:27 by creek             #+#    #+#             */
-/*   Updated: 2018/12/04 20:29:08 by creek            ###   ########.fr       */
+/*   Created: 2018/12/04 17:24:45 by creek             #+#    #+#             */
+/*   Updated: 2018/12/04 20:29:35 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isalpha(int c)
+int		ft_isdigit(int c)
 {
-	unsigned char letter;
-
-	letter = (unsigned char)c;
-	if ((letter >= 65 && letter <= 90) || (letter >= 97 && letter <= 122)) 
+	unsigned char digit;
+	digit = (unsigned char)c;
+	if (digit >= 49 && digit <= 57)
 		return (1);
-	return (0);
+	else 
+		return (0);
 }
