@@ -6,16 +6,15 @@
 /*   By: creek <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 17:13:27 by creek             #+#    #+#             */
-/*   Updated: 2018/12/04 20:29:08 by creek            ###   ########.fr       */
+/*   Updated: 2018/12/06 17:59:40 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 int		ft_isalpha(int c)
 {
-	unsigned char letter;
-
-	letter = (unsigned char)c;
-	if ((letter >= 65 && letter <= 90) || (letter >= 97 && letter <= 122)) 
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
 		return (1);
 	return (0);
 }

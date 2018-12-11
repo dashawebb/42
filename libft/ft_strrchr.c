@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creek <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 19:18:05 by creek             #+#    #+#             */
-/*   Updated: 2018/12/01 20:25:45 by creek            ###   ########.fr       */
+/*   Updated: 2018/12/11 16:08:55 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_strrchr(const char *s, int c)
 	s1 = (char *)s;
 	s2 = 0;
 	c1 = (char)c;
+	if (*s1 == c1)
+		return (s1);
 	while (*s1++ != '\0')
 	{
 		if (*s1 == c1)
@@ -28,5 +30,5 @@ char	*ft_strrchr(const char *s, int c)
 			s2 = s1;
 		}
 	}
-	return (s2 != 0? s2 : NULL);
+	return (s2 != 0 ? s2 : NULL);
 }

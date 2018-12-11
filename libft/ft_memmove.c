@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creek <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 17:33:09 by creek             #+#    #+#             */
-/*   Updated: 2018/11/26 18:23:26 by creek            ###   ########.fr       */
+/*   Updated: 2018/12/11 13:46:40 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char *new_dst;
-	char *new_src;
-	int i;
+	char	*new_dst;
+	char	*new_src;
+	size_t	i;
 
 	new_dst = (char *)dst;
-    new_src = (char *)src;
+	new_src = (char *)src;
 	i = 0;
-	if (*new_src > *new_dst)
+	if (new_src > new_dst)
 	{
 		while (i < len)
 		{
-			new_dst[i] = new_src[i];	
+			new_dst[i] = new_src[i];
 			i++;
 		}
 	}
-	if (*new_src < *new_dst)
-    {
+	if (new_src < new_dst)
+	{
 		while (len > 0)
 		{
-            new_dst[len-1] = new_src[len-1];
-            len--;
+			new_dst[len - 1] = new_src[len - 1];
+			len--;
 		}
 	}
 	return (dst);

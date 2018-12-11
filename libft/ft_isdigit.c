@@ -6,16 +6,13 @@
 /*   By: creek <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 17:24:45 by creek             #+#    #+#             */
-/*   Updated: 2018/12/04 20:29:35 by creek            ###   ########.fr       */
+/*   Updated: 2018/12/06 18:06:22 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_isdigit(int c)
 {
-	unsigned char digit;
-	digit = (unsigned char)c;
-	if (digit >= 49 && digit <= 57)
+	if (c >= 48 && c <= 57)
 		return (1);
-	else 
-		return (0);
+	return (0);
 }
