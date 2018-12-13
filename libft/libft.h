@@ -6,13 +6,14 @@
 /*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 15:21:16 by creek             #+#    #+#             */
-/*   Updated: 2018/12/11 17:46:44 by creek            ###   ########.fr       */
+/*   Updated: 2018/12/12 22:31:26 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
+# include <stdlib.h>
 
 void	ft_bzero(void *s, size_t n);
 
@@ -56,6 +57,8 @@ char	*ft_strncat(char *s1, const char *s2, size_t n);
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
+int     ft_atoi(const char *str);
+
 char	*ft_strncpy(char *dst, const char *src, size_t len);
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
@@ -67,6 +70,24 @@ char	*ft_strstr(const char *haystack, const char *needle);
 int		ft_tolower(int c);
 
 int		ft_toupper(int c);
+
+void  *ft_memalloc(size_t size);
+
+void  ft_memdel(void **ap);
+
+void  ft_strdel(char **as);
+
+char *ft_strnew(size_t size);
+
+void  ft_strclr(char *s);
+
+void  ft_striter(char *s, void (*f)(char *));
+
+void  ft_striteri(char *s, void (*f)(unsigned int, char *));
+
+char  *ft_strmap(char const *s, char (*f)(char));
+
+char	*ft_itoa(int n);
 
 void	ft_putchar(char c);
 

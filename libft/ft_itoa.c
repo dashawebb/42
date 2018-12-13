@@ -6,7 +6,7 @@
 /*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 17:55:59 by creek             #+#    #+#             */
-/*   Updated: 2018/12/11 20:12:50 by creek            ###   ########.fr       */
+/*   Updated: 2018/12/12 20:29:54 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		ft_int_len(int n)
 	int len;
 
 	len = 0;
-	while (n > 9)
+	while (n > 9 || n < -9)
 	{
 		n /= 10;
 		len++;
@@ -77,7 +77,7 @@ char	*ft_itoa(int n)
 	while (n != 0)
 	{
 		rem = n % 10;
-		str[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
+		str[i++] = rem + '0';
 		n = n / 10;
 	}
 	if (sign == -1)
