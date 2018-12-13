@@ -6,7 +6,7 @@
 /*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 17:33:09 by creek             #+#    #+#             */
-/*   Updated: 2018/12/06 17:44:37 by creek            ###   ########.fr       */
+/*   Updated: 2018/12/11 13:46:40 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	new_dst = (char *)dst;
 	new_src = (char *)src;
 	i = 0;
-	if (*new_src > *new_dst)
+	if (new_src > new_dst)
 	{
 		while (i < len)
 		{
@@ -29,7 +29,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			i++;
 		}
 	}
-	if (*new_src < *new_dst)
+	if (new_src < new_dst)
 	{
 		while (len > 0)
 		{

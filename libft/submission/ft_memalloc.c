@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: creek <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 19:18:05 by creek             #+#    #+#             */
-/*   Updated: 2018/12/11 14:02:57 by creek            ###   ########.fr       */
+/*   Created: 2018/12/13 13:43:51 by creek             #+#    #+#             */
+/*   Updated: 2018/12/13 13:44:32 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_memalloc(size_t size)
 {
-	char c1;
-	char *s1;
+	void *memory;
 
-	s1 = (char *)s;
-	c1 = (char)c;
-	if (*s1 == c1)
-		return (s1);
-	while (*s1++ != '\0')
-	{
-		if (*s1 == c1)
-		{
-			return (s1);
-			break ;
-		}
-	}
-	return (NULL);
+	if (!(memory = (void *)malloc(sizeof(void) * size)))
+		return (NULL);
+	ft_bzero(memory, size);
+	return (memory);
 }

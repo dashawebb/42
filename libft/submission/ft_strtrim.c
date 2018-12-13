@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 20:03:41 by creek             #+#    #+#             */
-/*   Updated: 2018/12/11 15:54:18 by creek            ###   ########.fr       */
+/*   Created: 2018/12/13 16:14:43 by creek             #+#    #+#             */
+/*   Updated: 2018/12/13 20:37:43 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strdup(const char *src)
+char	*ft_strtrim(char const *s)
 {
-	size_t	len;
 	char	*new_str;
+	int		start;
 	int		i;
+	int		len;
 
+	start = -1;
 	i = 0;
-	len = ft_strlen((char*)src);
-	if (!src)
+	if (!s)
 		return (NULL);
-	if (!(new_str = (char*)malloc((len + 1) * sizeof(*new_str))))
+	len = ft_strlen(s) - 1;
+	while (s[len] == ' ' || s[len] == '\n' || s[len] == '\t')
+		len--;
+	while (s[++start] == ' ' || s[start] == '\n' || s[start] == '\t')
+		len--;
+	if (len <= 0)
+		len = 0;
+	if (!(new_str = (char*)malloc(sizeof(char) * (len + 2))))
 		return (NULL);
-	while ((new_str[i] = src[i]) != '\0')
-		i++;
+	while (i <= len)
+	{
+		new_str[i++] = s[start];
+		start++;
+	}
+	new_str[i] = '\0';
 	return (new_str);
 }

@@ -6,7 +6,7 @@
 /*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 15:49:06 by creek             #+#    #+#             */
-/*   Updated: 2018/12/06 22:00:00 by creek            ###   ########.fr       */
+/*   Updated: 2018/12/11 13:42:00 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,14 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	new_dst = (unsigned char *)dst;
 	new_src = (unsigned char *)src;
 	new_c = (unsigned char)c;
-	while (n > 0 && *new_src != new_c)
+	while (n > 0)
 	{
 		*new_dst = *new_src;
+		if (*new_src == new_c)
+			return (new_dst + 1);
 		new_dst++;
 		new_src++;
 		n--;
 	}
-	if (*new_src == new_c)
-		return (new_dst + 1);
-	else
-		return (NULL);
+	return (NULL);
 }
