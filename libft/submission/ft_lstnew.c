@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 13:49:48 by creek             #+#    #+#             */
-/*   Updated: 2018/12/15 17:54:46 by creek            ###   ########.fr       */
+/*   Created: 2018/12/15 14:53:10 by creek             #+#    #+#             */
+/*   Updated: 2018/12/15 17:53:14 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	int num;
-	int sign;
+	t_list	*new;
 
-	num = 0;
-	sign = 1;
-	while (*str == '\r' || *str == '\t' || *str == '\n')
-		str++;
-	while (*str == '\v' || *str == '\f' || *str == ' ')
-		str++;
-	if (*str == '+')
-		str++;
-	else if (*str == '-')
+	if (!(new = (t_list *)malloc(sizeof(t_list))))
+		return (NULL);
+	if (!content || !content_size)
 	{
-		sign = -1;
-		str++;
+		new->content = NULL;
+		new->content_size = 0;
 	}
-	while (*str >= '0' && *str <= '9' && *str != '\0')
+	else
 	{
-		num = num * 10 + *str - '0';
-		str++;
+		if (!(new->content = (malloc(sizeof(content_size)))))
+			return (NULL);
+		new->content = ft_memcpy((new->content), content, content_size);
+		new->content_size = content_size;
 	}
-	return (num * sign);
+	new->next = NULL;
+	return (new);
 }
