@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creek <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 17:18:43 by creek             #+#    #+#             */
-/*   Updated: 2018/12/06 17:20:00 by creek            ###   ########.fr       */
+/*   Created: 2018/12/19 15:12:09 by creek             #+#    #+#             */
+/*   Updated: 2018/12/19 15:29:11 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	ft_memdel(void **ap)
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	free(*ap);
-	*ap = NULL;
+	if (new != NULL && alst != NULL)
+	{
+		new->next = *alst;
+		*alst = new;
+	}
 }

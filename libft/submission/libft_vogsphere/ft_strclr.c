@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creek <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 17:18:43 by creek             #+#    #+#             */
-/*   Updated: 2018/12/06 17:20:00 by creek            ###   ########.fr       */
+/*   Created: 2018/12/13 13:47:15 by creek             #+#    #+#             */
+/*   Updated: 2018/12/13 19:06:39 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	ft_memdel(void **ap)
+void	ft_strclr(char *s)
 {
-	free(*ap);
-	*ap = NULL;
+	int i;
+	int len;
+
+	if (s == NULL)
+		return ;
+	i = 0;
+	len = ft_strlen(s);
+	if (s == NULL)
+		return ;
+	while (i < len)
+	{
+		s[i] = '\0';
+		i++;
+	}
 }

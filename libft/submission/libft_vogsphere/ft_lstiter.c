@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creek <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 17:18:43 by creek             #+#    #+#             */
-/*   Updated: 2018/12/06 17:20:00 by creek            ###   ########.fr       */
+/*   Created: 2018/12/19 15:30:09 by creek             #+#    #+#             */
+/*   Updated: 2018/12/19 21:10:58 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	ft_memdel(void **ap)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	free(*ap);
-	*ap = NULL;
+	if (lst != NULL && f != NULL)
+	{
+		while (lst)
+		{
+			f(lst);
+			lst = lst->next;
+		}
+	}
 }

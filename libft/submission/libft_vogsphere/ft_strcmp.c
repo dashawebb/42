@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creek <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 17:18:43 by creek             #+#    #+#             */
-/*   Updated: 2018/12/06 17:20:00 by creek            ###   ########.fr       */
+/*   Created: 2018/12/04 16:48:11 by creek             #+#    #+#             */
+/*   Updated: 2018/12/11 15:52:07 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-void	ft_memdel(void **ap)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	free(*ap);
-	*ap = NULL;
+	int i;
+
+	i = 0;
+	while (s1[i] || s2[i])
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		else
+			i++;
+	}
+	return (0);
 }

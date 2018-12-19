@@ -1,19 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creek <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 17:18:43 by creek             #+#    #+#             */
-/*   Updated: 2018/12/06 17:20:00 by creek            ###   ########.fr       */
+/*   Created: 2018/11/27 17:05:24 by creek             #+#    #+#             */
+/*   Updated: 2018/12/11 15:54:48 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	ft_memdel(void **ap)
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	free(*ap);
-	*ap = NULL;
+	size_t i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (*src != '\0')
+		{
+			dst[i] = *src;
+			src++;
+		}
+		else
+		{
+			dst[i] = '\0';
+		}
+		i++;
+	}
+	return (dst);
 }
