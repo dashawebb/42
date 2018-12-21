@@ -6,7 +6,7 @@
 /*   By: creek <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 13:45:31 by creek             #+#    #+#             */
-/*   Updated: 2018/12/13 13:46:23 by creek            ###   ########.fr       */
+/*   Updated: 2018/12/21 17:34:25 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strnew(size_t size)
 	char	*str;
 
 	i = 0;
+	if (size + 1 == 0)
+		return (NULL);
 	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
 	while (i <= size)
