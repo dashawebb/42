@@ -6,7 +6,7 @@
 /*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:31:43 by creek             #+#    #+#             */
-/*   Updated: 2019/01/15 23:32:19 by creek            ###   ########.fr       */
+/*   Updated: 2019/01/16 04:03:17 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ int		ft_display_line(const int fd, char **line)
   static char new_buf_2[BUFF_SIZE + 1];
   int ret;
   int len;
-  int i;
+  int len1 = 0;
   int j;
 
-  i = 0;
   j = 0;
   ret = 1;
   while (ret) // до тех пор, пока read не вернет 0. Отдельно обработать ошибку (ret = -1)
@@ -40,29 +39,28 @@ int		ft_display_line(const int fd, char **line)
 		  return (0);
 	  if (ret == -1)
 		  return (-1); // в какой-то момент считывание не удалось, значит мы выходим из ф-ии?*/
-	len = ft_strlen(buf); // output - 60
-	printf("%d\n", len);
+	len = 0;
 	  while (buf[j] != '\n') // в new_buf здесь записывается только выводимая часть строки
 	  {
-		  new_buf[i] = buf[j];
-		  i++;
+		  len++;
 		  j++;
 	  }
-	  i = 0;
-	  j += 1;
+	  ft_strncpy(new_buf, buf, len);
+	  j += 1; // потому что надо скипнуть /n
 	  while (buf[j]) // в new_buf здесь записывается только выводимая часть строки
-	 {
-		 new_buf_2[i] = buf[j];
-		 i++;
+	  {
+		 len1++;
 		 j++;
 	 }
+	 ft_strncpy(new_buf_2, buf, len1);
 	  *line = &new_buf[0]; // line теперь содержит только строку до \n
 	  printf("%s - это - считанная линия\n", *line);
 	  printf("%s - это - изначальный буфер\n", &buf[0]); // в буф произошло все считывание. Надо удалить первую часть?
 	  printf("%s - это - буфер для записи остатка\n", &new_buf_2[0]);
-	  // free();
-	  printf("%s - это буфер после освобождения\n", &buf[0]);
 //	  buf[BUFF_SIZE - 1] = '\0';
+		*line += len;
+		printf("%s - это - line после обновления\n", *line);
+
   }
   return (0);
 }
