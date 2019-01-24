@@ -6,7 +6,7 @@
 /*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:54:00 by creek             #+#    #+#             */
-/*   Updated: 2019/01/20 15:45:52 by creek            ###   ########.fr       */
+/*   Updated: 2019/01/24 21:53:37 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,22 @@ int	main(int argc, char **argv)
 			return (-1);
 			printf("О нет! Произошло непоправимое\n");
 		}
-		get_next_line(fd, &line);
-		get_next_line(fd, &line);
-		get_next_line(fd, &line);
-		get_next_line(fd, &line);
-		get_next_line(fd, &line);
-		get_next_line(fd, &line);
+		printf("%d\n", get_next_line(fd, &line));
+		printf("%s --- vot eta Line\n", line);
+		printf("%d\n", get_next_line(fd, &line));
+		printf("%s --- vot eta Line\n", line);
+		printf("%d\n", get_next_line(fd, &line));
+		printf("%s --- vot eta Line\n", line);
+		printf("%d\n", get_next_line(fd, &line));
+		printf("%s --- vot eta Line\n", line);
+		printf("%d\n", get_next_line(fd, &line));
+		printf("%s --- vot eta Line\n", line);
+		printf("%d\n", get_next_line(fd, &line));
+		// get_next_line(fd, &line);
+		// get_next_line(fd, &line);
+		// get_next_line(fd, &line);
+		// get_next_line(fd, &line);
+		// get_next_line(fd, &line);
 	}
 	return (0);
 }
