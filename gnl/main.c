@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: creek <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 14:54:00 by creek             #+#    #+#             */
-/*   Updated: 2019/01/24 21:53:37 by creek            ###   ########.fr       */
+/*   Created: 2019/01/25 21:24:24 by creek             #+#    #+#             */
+/*   Updated: 2019/01/25 21:24:34 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	int fd;
 	char *line;
@@ -30,22 +30,10 @@ int	main(int argc, char **argv)
 			return (-1);
 			printf("О нет! Произошло непоправимое\n");
 		}
-		printf("%d\n", get_next_line(fd, &line));
-		printf("%s --- vot eta Line\n", line);
-		printf("%d\n", get_next_line(fd, &line));
-		printf("%s --- vot eta Line\n", line);
-		printf("%d\n", get_next_line(fd, &line));
-		printf("%s --- vot eta Line\n", line);
-		printf("%d\n", get_next_line(fd, &line));
-		printf("%s --- vot eta Line\n", line);
-		printf("%d\n", get_next_line(fd, &line));
-		printf("%s --- vot eta Line\n", line);
-		printf("%d\n", get_next_line(fd, &line));
-		// get_next_line(fd, &line);
-		// get_next_line(fd, &line);
-		// get_next_line(fd, &line);
-		// get_next_line(fd, &line);
-		// get_next_line(fd, &line);
+		// while (get_next_line(fd, &line))
+		// ;
+		get_next_line(fd, &line);
+		printf("%s - это - line", line);
 	}
 	return (0);
 }
