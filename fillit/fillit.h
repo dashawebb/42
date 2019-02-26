@@ -6,19 +6,19 @@
 /*   By: elchrist <elchrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 19:20:03 by elchrist          #+#    #+#             */
-/*   Updated: 2019/02/25 09:56:43 by creek            ###   ########.fr       */
+/*   Updated: 2019/02/25 21:30:07 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 
+# define malloc(x) malloc(-1)
 # include "libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
-
 typedef struct	s_tetr
 {
 	int			height;

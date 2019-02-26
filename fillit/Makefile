@@ -6,7 +6,7 @@
 #    By: elchrist <elchrist@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 22:00:14 by elchrist          #+#    #+#              #
-#    Updated: 2019/02/25 14:05:31 by creek            ###   ########.fr        #
+#    Updated: 2019/02/26 09:32:21 by creek            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,13 @@ LIB_DIR  = libft/
 LIBFT   = libft/libft.a
 LIB_INCS  = libft/includes
 
-all: $(LIBFT) $(NAME)
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(OBJ)
+	gcc $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT)
 
 $(LIBFT):
-	make -C $(LIB_DIR)
-
-$(NAME): $(OBJ)
-	gcc $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT)
+    make -C $(LIB_DIR)
 
 %.o: %.c $(HEADER) Makefile
 	gcc $(FLAGS) -I$(LIB_INCS) -c $< -o $@

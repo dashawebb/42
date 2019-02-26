@@ -6,7 +6,7 @@
 /*   By: elchrist <elchrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 20:56:24 by elchrist          #+#    #+#             */
-/*   Updated: 2019/02/22 23:11:19 by elchrist         ###   ########.fr       */
+/*   Updated: 2019/02/25 21:08:53 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ t_list		*read_tetris(int fd)
 {
 	int		ret;
 	char	letter;
-	char	buff[22];
 	t_list	*tetris;
 	t_list	*tetr;
+	char	buff[21];
 
 	if (fd < 0)
 		it_is_error();
