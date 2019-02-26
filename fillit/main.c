@@ -6,7 +6,7 @@
 /*   By: elchrist <elchrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 21:45:07 by elchrist          #+#    #+#             */
-/*   Updated: 2019/02/22 22:29:52 by elchrist         ###   ########.fr       */
+/*   Updated: 2019/02/26 15:37:58 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		printing_fin_map(char **map)
 	int		j;
 
 	j = 0;
-	while (map[j])
+	while (map[j] != '\0')
 	{
 		ft_putstr(map[j]);
 		ft_putchar('\n');

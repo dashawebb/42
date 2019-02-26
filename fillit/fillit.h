@@ -6,20 +6,20 @@
 /*   By: elchrist <elchrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 19:20:03 by elchrist          #+#    #+#             */
-/*   Updated: 2019/02/25 21:30:07 by creek            ###   ########.fr       */
+/*   Updated: 2019/02/26 12:16:04 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
-
-# define malloc(x) malloc(-1)
 # include "libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
+
 typedef struct	s_tetr
+
 {
 	int			height;
 	int			width;
@@ -40,7 +40,7 @@ void			free_list(t_list *head);
 void			ft_listadd_to_end(t_list **begin_list, t_list *new);
 void			print_list(t_list *list);
 void			printing_fin_map(char **map);
-void			empty_map_drawing(char **map, int map_size);
+int				empty_map_drawing(char **map, int map_size);
 void			cut_empty_lines(t_tetr *tetri);
 void			cut_empty_column(t_tetr *tetri);
 void			init_vars(int *arr);
@@ -56,5 +56,6 @@ int				check_link(char **tetr, int x, int y);
 int				check_points(char **tetr);
 int				check_newline(char **tetr);
 int				ft_sqrt_round_up(int nb);
+void			map_clearing(char **map, int map_size);
 
 #endif
