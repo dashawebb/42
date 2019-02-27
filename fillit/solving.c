@@ -6,7 +6,7 @@
 /*   By: creek <creek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 00:41:43 by creek             #+#    #+#             */
-/*   Updated: 2019/02/26 15:45:03 by creek            ###   ########.fr       */
+/*   Updated: 2019/02/27 12:50:16 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ int		empty_map_drawing(char **map, int map_size)
 		ft_memset(map[i], '.', (size_t)map_size);
 		i++;
 	}
-	// if (!(map[i] = ft_strnew((size_t)map_size + 1)))
-	// 	return (0);
-	// ft_memset(map[i], '.', (size_t)map_size);
 	map[i] = NULL;
 	return (1);
 }
@@ -72,7 +69,7 @@ int		solving(int quantity, t_list *tetris, char **map, int map_size)
 	return (0);
 }
 
-char	**fillit(int quantity, t_list *tetris)
+int		fillit(int quantity, t_list *tetris)
 {
 	int		map_size;
 	char	**map;
@@ -91,7 +88,9 @@ char	**fillit(int quantity, t_list *tetris)
 		if (!(empty_map_drawing(map, map_size)))
 			return (0);
 	}
-	return (map);
+	printing_fin_map(map, map_size);
+	map_clearing(map, map_size);
+	return (1);
 }
 
 int		left_corner_check(t_tetr *tetri, int *yx)

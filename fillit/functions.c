@@ -6,7 +6,7 @@
 /*   By: elchrist <elchrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 19:35:08 by elchrist          #+#    #+#             */
-/*   Updated: 2019/02/26 16:31:19 by creek            ###   ########.fr       */
+/*   Updated: 2019/02/27 12:48:36 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,24 @@ void	map_clearing(char **map, int map_size)
 	int i;
 
 	i = 0;
-	while (i <= map_size)
+	while (i < map_size)
 	{
 		ft_strdel(&map[i]);
 		i++;
 	}
 	free(map);
-	*map = NULL;
+	map = NULL;
+}
+
+void	printing_fin_map(char **map, int map_size)
+{
+	int	j;
+
+	j = 0;
+	while (j < map_size)
+	{
+		ft_putstr(map[j]);
+		ft_putchar('\n');
+		j++;
+	}
 }

@@ -6,13 +6,14 @@
 /*   By: elchrist <elchrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 18:46:34 by elchrist          #+#    #+#             */
-/*   Updated: 2018/12/08 18:49:41 by elchrist         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:25:49 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
+# include <stdlib.h>
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);

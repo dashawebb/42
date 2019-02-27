@@ -6,7 +6,7 @@
 /*   By: elchrist <elchrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 19:20:03 by elchrist          #+#    #+#             */
-/*   Updated: 2019/02/26 12:16:04 by creek            ###   ########.fr       */
+/*   Updated: 2019/02/27 12:45:20 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct	s_tetr
 }				t_tetr;
 
 char			**create_shape(char *buff, char letter);
-char			**fillit(int quantity, t_list *tetris);
+int				fillit(int quantity, t_list *tetris);
 
 t_list			*create_tetr(char *buff, char letter);
 t_list			*read_tetris(int fd);
@@ -39,7 +39,7 @@ void			to_letters(char **tetr, char letter);
 void			free_list(t_list *head);
 void			ft_listadd_to_end(t_list **begin_list, t_list *new);
 void			print_list(t_list *list);
-void			printing_fin_map(char **map);
+void			printing_fin_map(char **map, int map_size);
 int				empty_map_drawing(char **map, int map_size);
 void			cut_empty_lines(t_tetr *tetri);
 void			cut_empty_column(t_tetr *tetri);

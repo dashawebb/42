@@ -6,7 +6,7 @@
 /*   By: elchrist <elchrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 21:45:07 by elchrist          #+#    #+#             */
-/*   Updated: 2019/02/26 15:37:58 by creek            ###   ########.fr       */
+/*   Updated: 2019/02/27 12:49:05 by creek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,8 @@ int			main(int argc, char **argv)
 		quantity = ft_listlen(tetris);
 		if (quantity > 26)
 			it_is_error();
-		map = fillit(quantity, tetris);
-		printing_fin_map(map);
+		fillit(quantity, tetris);
 		free_list(tetris);
 	}
 	return (0);
-}
-
-void		printing_fin_map(char **map)
-{
-	int		j;
-
-	j = 0;
-	while (map[j] != '\0')
-	{
-		ft_putstr(map[j]);
-		ft_putchar('\n');
-		j++;
-	}
 }
