@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+
 int sort_by_time(long time_1, long time_2) {
 	if (time_1 && time_2)
 	{
@@ -56,6 +57,24 @@ typedef struct s_info
 
 
 */
+	int print_chmod(struct stat buf)
+	{
+		int statchmod = buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO);
+		printf("chmod: %o\n", statchmod);
+
+		int i = 3;
+		int j = 1;
+		char str[11];
+		str[0] = '0';
+		while (i--)
+		{
+			str[j++] = ((statchmod >> ((i * 3) + 2) & 1) ? 'r' : '-');
+			str[j++] = ((statchmod >> ((i * 3) + 1) & 1) ? 'w' : '-');
+			str[j++] = ((statchmod >> (i * 3) & 1) ? 'x' : '-');
+		}
+		printf("%s\n", str);
+
+	}
 
 int print_attributes(char *path)
 {
@@ -200,7 +219,6 @@ int	main()
 	printf("Modification time: %s\n", ctime(&buf.st_mtimespec));
 	printf("Change time: %s\n", ctime(&buf.st_ctimespec));
 
-//	printf("")
 	printf("Access time in sec: %llu\n", buf.st_atimespec);
 	printf("Modification time in sec: %llu\n", buf.st_mtimespec);
 	printf("Change time in sec : %llu\n", buf.st_ctimespec);
@@ -237,9 +255,7 @@ int	main()
 		printf("gid: %s\n", group_name->gr_name);
 
 	// print chmod
-	int statchmod = buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO);
-	printf("chmod: %o\n", statchmod);
-	printf("chmod rwx: %o %o %o \n", buf.st_mode & 001, buf.st_mode & 010, buf.st_mode & 100);
+	print_chmod(buf);
 
 	//	printf("user defined flags:\n", buf.st_mode);
 
