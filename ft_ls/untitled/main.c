@@ -12,16 +12,166 @@
 #include <pwd.h>
 #include <uuid/uuid.h>
 #include <grp.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+int sort_by_time(long time_1, long time_2) {
+	if (time_1 && time_2)
+	{
+		if (time_1 > time_2)
+			return (1);
+		if (time_1 == time_2)
+			return (0);
+		if (time_2 == time_1)
+			return (-1);
+	}
+}
+
+
+typedef struct s_info
+{
+	char *name;
+	size_t size;
+	long access_time;
+	long mod_time;
+	long change_time;
+	int filetype; // как лучше хранить тип файла?
+	size_t serial_number;
+// как хранить uid and gid?
+	char *uid;
+	char *gid;
+	int chmod;
+
+
+
+} t_info;
+
+	/* для сравнения по дате не нужно вызывать ctime)
+	printf("Access time: %s\n", ctime(&buf.st_atimespec));
+	printf("Modification time: %s\n", ctime(&buf.st_mtimespec));
+	printf("Change time: %s\n", ctime(&buf.st_ctimespec));
+
+	unsigned long long time
+
+
+
+*/
+
+int print_attributes(char *path)
+{
+	ssize_t buflen, keylen, vallen;
+	char *buf, *key, *val;
+
+	/*
+	 * Determine the length of the buffer needed.
+	 */
+	buflen = listxattr(path, NULL, 0, 0);
+	//printf("buflen: %zd\n", buflen); // тут все нормально считывается
+	if (buflen == -1)
+	{
+		perror("listxattr");
+		exit(EXIT_FAILURE);
+	}
+	if (buflen == 0)
+	{
+		printf("%s has no attributes.\n", path);
+//		exit(EXIT_SUCCESS);
+		return (0);
+	}
+
+	/*
+	* Allocate the buffer.
+	*/
+	buf = (char *)malloc(buflen);
+	if (buf == NULL)
+	{
+		perror("malloc");
+		exit(EXIT_FAILURE);
+	}
+
+	/*
+	 * Copy the list of attribute keys to the buffer.
+	 */
+	buflen = listxattr(path, buf, buflen, 0);
+	//printf("buflen: %zd\n", buflen); // почему-то тут -1
+	if (buflen == -1)
+	{
+		perror("listxattr");
+		exit(EXIT_FAILURE);
+	}
+
+	/*
+	 * Loop over the list of zero terminated strings with the
+	 * attribute keys. Use the remaining buffer length to determine
+	 * the end of the list.
+	 */
+	key = buf;
+	while (buflen > 0)
+	{
+
+		/*
+		 * Output attribute key.
+		 */
+		printf("eta attribute %s: \n", key);
+
+		/*
+		 * Determine length of the value.
+		 */
+		vallen = getxattr(path, key, NULL, 0, 0, 0);
+		if (vallen == -1)
+			perror("getxattr");
+		if (vallen > 0)
+		{
+
+			/*
+			 * Allocate value buffer.
+			 * One extra byte is needed to append 0x00.
+			 */
+			val = malloc(vallen + 1);
+			if (val == NULL) {
+				perror("malloc");
+				exit(EXIT_FAILURE);
+			}
+
+			/*
+			 * Copy value to buffer.
+			 */
+			vallen = getxattr(path, key, val, vallen, 0 , 0);
+			if (vallen == -1)
+				perror("getxattr");
+			else
+			{
+				/*
+				 * Output attribute value.
+				 */
+				val[vallen] = 0;
+				printf("%s", val);
+			}
+			free(val);
+		}
+		else if (vallen == 0)
+			printf("<no value>");
+
+		printf("\n");
+
+		/*
+		 * Forward to next attribute key.
+		 */
+		keylen = strlen(key) + 1;
+		buflen -= keylen;
+		key += keylen;
+	}
+
+	free(buf);
+//	exit(EXIT_SUCCESS);
+}
+
 
 int	main()
 {
-    printf("Hello, World!\n");
-    int a;
+	int a;
 
-    a = 5;
-
-    a = 6;
-	DIR *directory;
+ 	DIR *directory;
 	struct dirent *dirent1;
 
     directory = opendir("./");
@@ -32,19 +182,16 @@ int	main()
 	struct stat buf;
 
 	path = "./Makefile";
-//	path = "/Users/creek/42/42_pdfs";
-	a = lstat(path, &buf);
-
+//	path = "/Users/creek/test_ls/6";
+	a = lstat(path, &buf); //
 
 	// print name
 	char *name;
 	name = strrchr(path, '/');
 	printf("name: %s\n", ++name);
 	// print attr
-	char *attributes;
-	size_t attr_size = 20; // RANDOM_NUM
-//	getxattr(path, name, attributes, attr_size);
-	printf("attributes: %s\n", attributes);
+	print_attributes(path);
+
 	// print size
 	printf("size in bytes: %lld\n", buf.st_size);
 	// print date mod
@@ -52,6 +199,11 @@ int	main()
 	printf("Access time: %s\n", ctime(&buf.st_atimespec));
 	printf("Modification time: %s\n", ctime(&buf.st_mtimespec));
 	printf("Change time: %s\n", ctime(&buf.st_ctimespec));
+
+//	printf("")
+	printf("Access time in sec: %llu\n", buf.st_atimespec);
+	printf("Modification time in sec: %llu\n", buf.st_mtimespec);
+	printf("Change time in sec : %llu\n", buf.st_ctimespec);
 	// print type of file/dir
 	if (S_ISREG(buf.st_mode))
 		printf("type of file/dir: regular file\n");
@@ -87,12 +239,49 @@ int	main()
 	// print chmod
 	int statchmod = buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO);
 	printf("chmod: %o\n", statchmod);
+	printf("chmod rwx: %o %o %o \n", buf.st_mode & 001, buf.st_mode & 010, buf.st_mode & 100);
 
 	//	printf("user defined flags:\n", buf.st_mode);
-	// column 2? in ls -la
-	printf("hard links: %hu\n", buf.st_nlink);
+
+	// THE HELL THIS MEANS?
 
 
+	// column 2? in ls -la - amount of links
+	printf("links: %hu\n", buf.st_nlink);
+	// contents of a link
+//	char *linkname;
+//
+//	linkname = malloc(buf.st_size + 1);
+//	if (linkname == NULL)
+//	{
+//		fprintf(stderr, "insufficient memory\n");
+//		exit(EXIT_FAILURE);
+//	}
+//	ssize_t r;
+//	r = readlink(path, linkname, buf.st_size + 1);
+//
+//	if (r < 0)
+//	{
+//		perror("lstat");
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	if (r > buf.st_size)
+//	{
+//		fprintf(stderr, "symlink increased in size "
+//						"between lstat() and readlink()\n");
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	linkname[buf.st_size] = '\0';
+
+	// printf("'%s' points to '%s'\n", path, linkname);
+
+
+	// amount of blocks allocated for this file
+	printf("Amount of blocks allocated: %lld\n", buf.st_blocks);
+
+	printf("sizeof time_t is: %lu\n", sizeof(time_t));
 
 
 	// get list of files in dir
@@ -128,5 +317,10 @@ int	main()
 //		u_long   st_flags;  /* user defined flags for file */
 //		u_long   st_gen;    /* file generation number */
 //	};
-	return 0;
+//
+//int cmp_time(t_info info1, t_info info2)
+//{
+//
+//}
+//	return 0;
 }

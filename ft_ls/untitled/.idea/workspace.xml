@@ -23,18 +23,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.c">
+        <entry file="file:///usr/include/sys/xattr.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="557">
-              <caret line="129" column="6" selection-start-line="129" selection-start-column="6" selection-end-line="129" selection-end-column="6" />
-              <folding>
-                <element signature="e#62#80#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1080">
+              <caret line="72" column="32" selection-start-line="72" selection-end-line="73" />
             </state>
           </provider>
         </entry>
@@ -44,16 +36,24 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ft_ls/ft_ls.h">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="616">
+              <caret line="241" column="49" selection-start-line="241" selection-start-column="49" selection-end-line="241" selection-end-column="49" />
+              <folding>
+                <element signature="e#62#80#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>bad address</find>
+    </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -65,10 +65,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1158" />
-    <option name="y" value="89" />
-    <option name="width" value="1400" />
-    <option name="height" value="1128" />
+    <option name="x" value="387" />
+    <option name="y" value="23" />
+    <option name="width" value="2173" />
+    <option name="height" value="1336" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -131,12 +131,19 @@
       <workItem from="1552212133684" duration="2780000" />
       <workItem from="1552228159610" duration="643000" />
       <workItem from="1552229351846" duration="4659000" />
-      <workItem from="1552238997832" duration="1373000" />
+      <workItem from="1552238997832" duration="1503000" />
+      <workItem from="1552389303539" duration="9588000" />
+      <workItem from="1552414281101" duration="4604000" />
+      <workItem from="1552572678585" duration="1614000" />
+      <workItem from="1552586043520" duration="1841000" />
+      <workItem from="1552656003672" duration="1428000" />
+      <workItem from="1552658122937" duration="1881000" />
+      <workItem from="1552661367388" duration="1211000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9455000" />
+    <option name="totallyTimeSpent" value="31752000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -148,25 +155,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1158" y="89" width="1400" height="1128" extended-state="0" />
+    <frame x="387" y="23" width="2173" height="1336" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26067746" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17691225" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3291506" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.45049274" visible="true" weight="0.3118971" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3996139" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3291506" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.3291506" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.42327547" weight="0.32877815" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3291506" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.54950726" side_tool="true" visible="true" weight="0.3118971" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="CMake" order="12" />
+      <window_info anchor="bottom" id="CMake" order="12" sideWeight="0.49882683" weight="0.329582" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -176,27 +183,8 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>26</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>33</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ft_ls/ft_ls.c">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/ft_ls/ft_ls.h">
@@ -206,10 +194,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/include/sys/xattr.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="72" column="32" selection-start-line="72" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ft_ls/ft_ls.c">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
-          <caret line="129" column="6" selection-start-line="129" selection-start-column="6" selection-end-line="129" selection-end-column="6" />
+        <state relative-caret-position="616">
+          <caret line="241" column="49" selection-start-line="241" selection-start-column="49" selection-end-line="241" selection-end-column="49" />
           <folding>
             <element signature="e#62#80#0" expanded="true" />
           </folding>
