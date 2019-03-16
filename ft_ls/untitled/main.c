@@ -1,20 +1,5 @@
-#ifndef st_mtime
-#define st_mtime st_mtimespec.tv_sec
-#endif
-
-#include <stdio.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <string.h>
-#include <time.h>
-#include <sys/types.h>
-#include <sys/xattr.h>
-#include <pwd.h>
-#include <uuid/uuid.h>
-#include <grp.h>
-#include <unistd.h>
-#include <stdlib.h>
-
+#include <sys/attr.h>
+#include "ft_ls/ft_ls.h"
 
 int sort_by_time(long time_1, long time_2) {
 	if (time_1 && time_2)
@@ -23,38 +8,107 @@ int sort_by_time(long time_1, long time_2) {
 			return (1);
 		if (time_1 == time_2)
 			return (0);
-		if (time_2 == time_1)
+		if (time_2 < time_1)
 			return (-1);
 	}
 }
 
-
-typedef struct s_info
+int sort_lexic(char *name_1, char *name_2)
 {
-	char *name;
-	size_t size;
-	long access_time;
-	long mod_time;
-	long change_time;
-	int filetype; // как лучше хранить тип файла?
-	size_t serial_number;
-// как хранить uid and gid?
-	char *uid;
-	char *gid;
-	int chmod;
+	int i;
+
+	i = 0;
+	if (ft_strcmp(name_1, name_2))
+		return (1);
+	if (name_1[i] == name_2[i])
+		return (0);
+	if (name_1[i] < name_2[i])
+		return (-1);
+
+
+}
+
+int sort_lexic_rev(char *name_1, char *name_2)
+{
 
 
 
-} t_info;
 
+
+}
+
+int validation(int argc, char *argv[])
+{
+	// считывание начинается с конца
+	// один из противоречащих аргументов - считывается первый
+	// строка вида ""
+
+	int i;
+	int j;
+	int k;
+
+	i = 2;
+	char good_flags[26] = "-ACLOPRST@adefhiklmnoprst1"; // надо добавить обработку флага -- (валидный)
+
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			k = 0;
+			while (good_flags[k])
+			{
+				if (argv[i][j] == good_flags[k])
+					break ;
+				k++;
+			}
+			if (!good_flags[k])
+			{
+				printf("illegal option -- %c\n", argv[i][j]);
+				printf("usage: ls [-ACLOPRST@adefhiklmnoprst1] [file ...]\n");
+				return (1) ;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+	int check_dash(int argc, char *argv[])
+	{
+
+		int i;
+		int j;
+		int k;
+
+		i = 2;
+		k = 0;
+		while (argv[i])
+		{
+			j = 0;
+			k = 0;
+			while (argv[i][j])
+			{
+				if (argv[i][j] == '-')
+					k++;
+				if (k == 2 && argv[i][j + 1])
+				{
+					printf("illegal option -- -\n");
+					printf("usage: ls [-ACLOPRST@adefhiklmnoprst1] [file ...]\n");
+					return (1);
+				}
+				j++;
+			}
+			i++;
+		}
+		return (0);
+	}
 	/* для сравнения по дате не нужно вызывать ctime)
 	printf("Access time: %s\n", ctime(&buf.st_atimespec));
 	printf("Modification time: %s\n", ctime(&buf.st_mtimespec));
 	printf("Change time: %s\n", ctime(&buf.st_ctimespec));
 
 	unsigned long long time
-
-
 
 */
 	int print_chmod(struct stat buf)
@@ -186,10 +240,12 @@ int print_attributes(char *path)
 }
 
 
-int	main()
+int	main(int argc, char *argv[])
 {
-	int a;
 
+	int a;
+	if (!(check_dash(argc, argv)))
+		validation(argc, argv);
  	DIR *directory;
 	struct dirent *dirent1;
 
@@ -237,6 +293,7 @@ int	main()
 		printf("type of file/dir: symbolic link\n");
 	if (S_ISSOCK(buf.st_mode))
 		printf("type of file/dir: socket\n");
+
 	// print serial number
 	printf("serial number: %llu\n", buf.st_ino);
 	// print gid uid
