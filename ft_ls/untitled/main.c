@@ -256,7 +256,7 @@ int	main(int argc, char *argv[])
 	char *path;
 	struct stat buf;
 
-	path = "./Makefile";
+	path = "/Users/creek/.brew/Library/Homebrew/os/mac/pkgconfig/fuse";
 //	path = "/Users/creek/test_ls/6";
 	a = lstat(path, &buf); //
 

@@ -3,5 +3,7 @@
 
 CMakeFiles/untitled.dir/ft_ls/ft_ls.c.o: ../ft_ls/ft_ls.c
 
+CMakeFiles/untitled.dir/main.c.o: ../libft/includes/libft.h
+CMakeFiles/untitled.dir/main.c.o: ../ft_ls/ft_ls.h
 CMakeFiles/untitled.dir/main.c.o: ../main.c
 

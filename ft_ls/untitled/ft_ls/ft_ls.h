@@ -26,7 +26,7 @@
 #include <grp.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "ft_ls/libft/libft.h"
+#include "libft.h"
 
 typedef struct s_info
 {
