@@ -14,6 +14,9 @@
 #define TYPE_LNK 5
 #define TYPE_SOCK 6
 
+#define OPTIONS "ACLOPRST@adefhiklmnoprst1"
+#define OPTIONS_SHIFT 7
+
 #include <stdio.h>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -27,6 +30,17 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "libft.h"
+
+#define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
+#define BYTE_TO_BINARY(byte)  \
+  (byte & 0x80 ? '1' : '0'), \
+  (byte & 0x40 ? '1' : '0'), \
+  (byte & 0x20 ? '1' : '0'), \
+  (byte & 0x10 ? '1' : '0'), \
+  (byte & 0x08 ? '1' : '0'), \
+  (byte & 0x04 ? '1' : '0'), \
+  (byte & 0x02 ? '1' : '0'), \
+  (byte & 0x01 ? '1' : '0')
 
 typedef struct s_info
 {

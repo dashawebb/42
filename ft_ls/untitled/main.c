@@ -32,77 +32,105 @@ int sort_lexic_rev(char *name_1, char *name_2)
 {
 
 
-
-
-
 }
 
-int validation(int argc, char *argv[])
-{
-	// считывание начинается с конца
-	// один из противоречащих аргументов - считывается первый
-	// строка вида ""
+//int int_flags(char *argv[])
+//{
+//	int i;
+//
+//	i = 0;
+//	int result;
+//
+//	//i = ft_strlen(argv[i]);
+//	i -= 1;
+//	if (!(index = ft_strchr(OPTIONS, argv[i][j])))
+//	{
+//		printf("illegal option -- %c\n", argv[i][j]);
+//		printf("usage: ls [-ACLOPRST@adefhiklmnoprst1] [file ...]\n");
+//		return (1);
+//	}
+//	else
+//	{
+//		((result >> index) & 1);
+//		result += (1 << index); // что это??
+//	}
+//
+//
+//	}
+//	return (result);
+//}
+//
+//
 
-	int i;
-	int j;
-	int k;
+//
+//int validation(int argc, char *argv[])
+//{
+//	// считывание начинается с конца
+//	// один из противоречащих аргументов - считывается первый
+//	// строка вида ""
+//
+//	int i;
+//	int j;
+//	int k;
+//
+//	i = 2;
+//	char good_flags[26] = "-ACLOPRST@adefhiklmnoprst1"; // надо добавить обработку флага -- (валидный)
+//
+//	while (argv[i])
+//	{
+//		j = 0;
+//		while (argv[i][j])
+//		{
+//			k = 0;
+//			while (good_flags[k])
+//			{
+//				if (argv[i][j] == good_flags[k]) // вот эту хуету надо переписать пожалуйста Даша
+//					break ;
+//				k++;
+//			}
+//			if (!good_flags[k])
+//			{
+//				printf("illegal option -- %c\n", argv[i][j]);
+//				printf("usage: ls [-ACLOPRST@adefhiklmnoprst1] [file ...]\n");
+//				return (1) ;
+//			}
+//			j++;
+//		}
+//		i++;
+//	}
+//	return (0);
+//}
 
-	i = 2;
-	char good_flags[26] = "-ACLOPRST@adefhiklmnoprst1"; // надо добавить обработку флага -- (валидный)
-
-	while (argv[i])
-	{
-		j = 0;
-		while (argv[i][j])
-		{
-			k = 0;
-			while (good_flags[k])
-			{
-				if (argv[i][j] == good_flags[k])
-					break ;
-				k++;
-			}
-			if (!good_flags[k])
-			{
-				printf("illegal option -- %c\n", argv[i][j]);
-				printf("usage: ls [-ACLOPRST@adefhiklmnoprst1] [file ...]\n");
-				return (1) ;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-	int check_dash(int argc, char *argv[])
-	{
-
-		int i;
-		int j;
-		int k;
-
-		i = 2;
-		k = 0;
-		while (argv[i])
-		{
-			j = 0;
-			k = 0;
-			while (argv[i][j])
-			{
-				if (argv[i][j] == '-')
-					k++;
-				if (k == 2 && argv[i][j + 1])
-				{
-					printf("illegal option -- -\n");
-					printf("usage: ls [-ACLOPRST@adefhiklmnoprst1] [file ...]\n");
-					return (1);
-				}
-				j++;
-			}
-			i++;
-		}
-		return (0);
-	}
+//
+//	int check_dash(int argc, char *argv[])
+//	{
+//
+//		int i;
+//		int j;
+//		int k;
+//
+//		i = 2;
+//		k = 0;
+//		while (argv[i])
+//		{
+//			j = 0;
+//			k = 0;
+//			while (argv[i][j])
+//			{
+//				if (argv[i][j] == '-')
+//					k++;
+//				if (k == 2 && argv[i][j + 1])
+//				{
+//					printf("illegal option -- -\n");
+//					printf("usage: ls [-ACLOPRST@adefhiklmnoprst1] [file ...]\n");
+//					return (1);
+//				}
+//				j++;
+//			}
+//			i++;
+//		}
+//		return (0);
+//	}
 	/* для сравнения по дате не нужно вызывать ctime)
 	printf("Access time: %s\n", ctime(&buf.st_atimespec));
 	printf("Modification time: %s\n", ctime(&buf.st_mtimespec));
@@ -239,13 +267,132 @@ int print_attributes(char *path)
 //	exit(EXIT_SUCCESS);
 }
 
+int check_valid_option(char *str, int result)
+{
+	/* 0-й символ уже '-' */
+	int i;
+	int index;
+
+	i = 1;
+	index = 0;
+
+	if ((str[i] == '-') && (!(str[i + 1])))
+		return (0); // это норм, флаг '--' валидный, возвращаем нолик
+	while(str[i])
+	{
+		if (!(ft_strchr(OPTIONS, str[i])))
+		{
+			write(1, "illegal option -- ", 18);
+			write (1, &str[i], 1);
+			write (1, "\n", 1);
+			write(1, "usage: ls [-ACLOPRST@adefhiklmnoprst1] [file ...]\n", 50);
+			return (-1); // инвалидный флаг
+		}
+		else {
+//			for (int z = 0; z < 100 && OPTIONS[z] != str[i]; z++)
+//				index = 31 - (z + 1 + OPTIONS_SHIFT); //
+//			// как i
+//			printf("eto index %d\n", index);
+//			if (!((result >> (31 - index)) & 1));
+//				result += (1 << (index));
+
+			for (int z = 0; z < 100 && OPTIONS[z] != str[i]; z++)
+				index = z + 1; //
+			// как i
+			//printf("eto index %d\n", index);
+			if (!(((result) >> index) & 1))
+				(result) += (1 << (index));
+			//printf("result: %d\n", result);
+			//printf("the letter was: %c\n", str[i]);
+			i++;
+		}
+	}
+	return (result);
+//	-ladefhikemnoprst1@CLOPRST
+// на k случилось переполнение инта
+}
+
+int check_file(char *str)
+{
+	int a = 0;
+	DIR *dir;
+	struct dirent *ent;
+	struct stat buf;
+
+	if (ft_strlen(str) > 255)
+	{
+		write(1, "ls: ", 4);
+		ft_putstr(str);
+		write (1, ": File name too long\n", 20);
+	}
+	if ((dir = opendir (str)) != NULL)
+	{
+		/* print all the files and directories within directory */
+		while ((ent = readdir (dir)) != NULL) {
+			//printf ("file or dir: ");
+			ft_putstr(ent->d_name);
+			write(1, "\n", 1);
+		}
+		closedir (dir);
+	} else {
+		/* could not open directory */
+		if ((a = lstat(str, &buf)) == -1) {
+			write(1, "ls: ", 4);
+			ft_putstr(str);
+			write(1, ": No such file or directory\n", 28);
+			return EXIT_FAILURE;
+		}
+		else
+			printf("Нашел файлик!: %s\n", str);
+	}
+	return (0);
+
+}
+
+int validation(int argc, char *argv[])
+{
+	int j;
+	int result = 0;
+
+	j = 0;
+	if (argc > 1)
+	{
+		argc -= 1;
+		while (argc > 0) {
+
+//			while (argv[argc])
+//			{
+				if (argv[argc][0] == '-')
+				{
+					if (!(argv[argc][1])) {
+						write(1, "ls: -: No such file or directory\n", 33);
+						return(-1);
+					}
+					if ((result = (check_valid_option(argv[argc], result))) == -1) // если есть -, значит это флаг. Отправляемся проверять его валидность. Если возвращает -1, выходим, else return options;
+						return (-1);
+				}
+				else
+					check_file(argv[argc]); // если минуса нет, значит это файл, и надо проверять его валидность. Дальше в мейне сделать проверку на отсутствие файла.
+				argc--;
+//			}
+		}
+		return (result);
+	}
+	return (0);
+}
 
 int	main(int argc, char *argv[])
 {
 
 	int a;
-	if (!(check_dash(argc, argv)))
-		validation(argc, argv);
+	int options; // здесь будут записываться флаги в интовом варианте
+
+	options = 0;
+	//if (!(check_dash(argc, argv)))
+	if ((options = (validation(argc, argv))) == -1) // она вызывает check_valid_option, которая вернет интовый OPTIONS. Их же надо передавать туда и апдейтить с разными флагами
+		exit(EXIT_FAILURE);
+	exit(EXIT_SUCCESS);
+	//printf("options после всех манипуляций %d\n", options);
  	DIR *directory;
 	struct dirent *dirent1;
 
@@ -256,7 +403,8 @@ int	main(int argc, char *argv[])
 	char *path;
 	struct stat buf;
 
-	path = "/Users/creek/.brew/Library/Homebrew/os/mac/pkgconfig/fuse";
+	path = "/Users/creek/CLionProjects/untitled/cmake-build-debug";
+//	path = "/Users/creek/.brew/Library/Homebrew/os/mac/pkgconfig/fuse";
 //	path = "/Users/creek/test_ls/6";
 	a = lstat(path, &buf); //
 
@@ -357,20 +505,41 @@ int	main(int argc, char *argv[])
 	printf("sizeof time_t is: %lu\n", sizeof(time_t));
 
 
-	// get list of files in dir
-	// get list of dirs in dir
+//	 get list of files in dir
+	DIR *dir;
+	struct dirent *ent;
+	if ((dir = opendir (".")) != NULL)
+	{
+		/* print all the files and directories within directory */
+		while ((ent = readdir (dir)) != NULL) {
+			printf ("file or dir: %s\n", ent->d_name);
+		}
+		closedir (dir);
+	} else {
+		/* could not open directory */
+		perror ("");
+		return EXIT_FAILURE;
+	}
+
+//	 get list of dirs in dir
+
+/* этот код ищет filename в директории */
+//	DIR *dirp;
+//	struct dirent *dp;
+//
 //	dirp = opendir(".");
 //	if (dirp == NULL)
-//		return (ERROR);
-//	len = strlen(name);
+//		return (1);
+//	size_t len = ft_strlen(name);
 //	while ((dp = readdir(dirp)) != NULL) {
 //		if (dp->d_namlen == len && strcmp(dp->d_name, name) == 0) {
 //			(void)closedir(dirp);
-//			return (FOUND);
+//			return (0);
 //		}
 //	}
 //	(void)closedir(dirp);
-//	return (NOT_FOUND);
+//	return (-1);
+//
 
 
 //	struct stat { /* when _DARWIN_FEATURE_64_BIT_INODE is NOT defined */

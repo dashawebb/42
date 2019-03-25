@@ -7,6 +7,10 @@ include_directories(libft/includes)
 
 #link_directories(libft)
 
+add_library(libft.a SHARED IMPORTED)
+set_target_properties(libft.a PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libft/libft.a)
+
 add_executable(untitled main.c ft_ls/ft_ls.c ft_ls/ft_ls.h)
 
-target_link_libraries(untitled libft/libft.a)
+target_link_libraries(untitled libft.a)
+

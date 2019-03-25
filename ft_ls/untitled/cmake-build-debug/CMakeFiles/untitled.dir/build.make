@@ -94,6 +94,7 @@ untitled_EXTERNAL_OBJECTS =
 untitled: CMakeFiles/untitled.dir/main.c.o
 untitled: CMakeFiles/untitled.dir/ft_ls/ft_ls.c.o
 untitled: CMakeFiles/untitled.dir/build.make
+untitled: ../libft/libft.a
 untitled: CMakeFiles/untitled.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/creek/CLionProjects/untitled/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable untitled"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/untitled.dir/link.txt --verbose=$(VERBOSE)
