@@ -101,97 +101,36 @@ int sort_lexic_rev(char *name_1, char *name_2)
 //	return (0);
 //}
 
-int check_valid_option(char *str)
-{
-	/* 0-й символ уже '-' */
-	int i;
-	int index;
-	int result;
-
-	i = 1;
-	index = 0;
-	result = 0;
-
-	if ((str[i] == '-') && (!(str[i + 1])))
-		return (0); // это норм, флаг '--' валидный, возвращаем нолик
-	while(str[i])
-	{
-		if (!(ft_strchr(OPTIONS, str[i])))
-		{
-			printf("illegal option -- %c\n", str[i]);
-			printf("usage: ls [-ACLOPRST@adefhiklmnoprst1] [file ...]\n");
-			return (1); // инвалидный флаг
-		}
-		else {
-			// как i
-			printf("возврат strchr -- %c\n", ft_strchr(OPTIONS, str[i]));
-			result = (result >> (index + OPTIONS_SHIFT) & 1);
-			//result += (1 << index); // что это??
-			i++;
-		}
-	}
-
-	printf("index: %d\n", index);
-
-}
-
-int check_file(char *str)
-{
-	return (0);
-
-}
-
-int validation(int argc, char *argv[])
-{
-	int j;
-
-	j = 0;
-
-	if (argc > 1)
-	{
-		argc -= 1;
-		while (argc > 0) {
-			while (argv[argc][j]) {
-				if (argv[argc][0] == '-')
-					check_valid_option(argv[argc]);
-				else
-					check_file(argv[argc]);
-			}
-			argc--;
-		}
-	}
-}
-
-
-	int check_dash(int argc, char *argv[])
-	{
-
-		int i;
-		int j;
-		int k;
-
-		i = 2;
-		k = 0;
-		while (argv[i])
-		{
-			j = 0;
-			k = 0;
-			while (argv[i][j])
-			{
-				if (argv[i][j] == '-')
-					k++;
-				if (k == 2 && argv[i][j + 1])
-				{
-					printf("illegal option -- -\n");
-					printf("usage: ls [-ACLOPRST@adefhiklmnoprst1] [file ...]\n");
-					return (1);
-				}
-				j++;
-			}
-			i++;
-		}
-		return (0);
-	}
+//
+//	int check_dash(int argc, char *argv[])
+//	{
+//
+//		int i;
+//		int j;
+//		int k;
+//
+//		i = 2;
+//		k = 0;
+//		while (argv[i])
+//		{
+//			j = 0;
+//			k = 0;
+//			while (argv[i][j])
+//			{
+//				if (argv[i][j] == '-')
+//					k++;
+//				if (k == 2 && argv[i][j + 1])
+//				{
+//					printf("illegal option -- -\n");
+//					printf("usage: ls [-ACLOPRST@adefhiklmnoprst1] [file ...]\n");
+//					return (1);
+//				}
+//				j++;
+//			}
+//			i++;
+//		}
+//		return (0);
+//	}
 	/* для сравнения по дате не нужно вызывать ctime)
 	printf("Access time: %s\n", ctime(&buf.st_atimespec));
 	printf("Modification time: %s\n", ctime(&buf.st_mtimespec));
@@ -203,19 +142,32 @@ int validation(int argc, char *argv[])
 	int print_chmod(struct stat buf)
 	{
 		int statchmod = buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO);
-		printf("chmod: %o\n", statchmod);
+		//printf("chmod: %o\n", statchmod);
 
 		int i = 3;
 		int j = 1;
 		char str[11];
-		str[0] = '0';
+		if (S_ISREG(buf.st_mode))
+			str[0] = "-";
+		if (S_ISDIR(buf.st_mode))
+			str[0] = "d";
+		if (S_ISCHR(buf.st_mode))
+			str[0] = "c";
+		if (S_ISBLK(buf.st_mode))
+			str[0] = "b";
+		if (S_ISFIFO(buf.st_mode))
+			str[0] = "p";
+		if (S_ISLNK(buf.st_mode))
+			str[0] = "l";
+		if (S_ISSOCK(buf.st_mode))
+			str[0] = "s";
 		while (i--)
 		{
 			str[j++] = ((statchmod >> ((i * 3) + 2) & 1) ? 'r' : '-');
 			str[j++] = ((statchmod >> ((i * 3) + 1) & 1) ? 'w' : '-');
 			str[j++] = ((statchmod >> (i * 3) & 1) ? 'x' : '-');
 		}
-		printf("%s\n", str);
+		ft_putstr(str);
 
 	}
 
@@ -328,13 +280,175 @@ int print_attributes(char *path)
 //	exit(EXIT_SUCCESS);
 }
 
+int check_valid_option(char *str, int result)
+{
+	/* 0-й символ уже '-' */
+	int i;
+	int index;
+
+	i = 1;
+	index = 0;
+
+	if ((str[i] == '-') && (!(str[i + 1])))
+		return (0); // это норм, флаг '--' валидный, возвращаем нолик
+	while(str[i])
+	{
+		if (!(ft_strchr(OPTIONS, str[i])))
+		{
+			write(1, "illegal option -- ", 18);
+			write (1, &str[i], 1);
+			write (1, "\n", 1);
+			write(1, "usage: ls [-ACLOPRST@adefhiklmnoprst1] [file ...]\n", 50);
+			return (-1); // инвалидный флаг
+		}
+		else {
+//			for (int z = 0; z < 100 && OPTIONS[z] != str[i]; z++)
+//				index = 31 - (z + 1 + OPTIONS_SHIFT); //
+//			// как i
+//			printf("eto index %d\n", index);
+//			if (!((result >> (31 - index)) & 1));
+//				result += (1 << (index));
+//				result += (1 << (index));
+
+			for (int z = 0; z < 100 && OPTIONS[z] != str[i]; z++)
+				index = z + 1; //
+			// как i
+			//printf("eto index %d\n", index);
+			if (!(((result) >> index) & 1))
+				(result) += (1 << (index));
+			//printf("result: %d\n", result);
+			//printf("the letter was: %c\n", str[i]);
+			i++;
+		}
+	}
+	return (result);
+//	-ladefhikemnoprst1@CLOPRST
+// на k случилось переполнение инта
+}
+
+int writing_file_data(struct dirent *ent)
+{
+	int a;
+	struct stat buf;
+	struct passwd *pwd;
+	struct group *group_name;
+	char *time;
+
+	a = lstat(ent, &buf);
+	print_chmod(buf);
+	write (1, "  ", 2);
+	ft_putnbr(buf.st_nlink);
+	write (1, " ", 1);
+	pwd = getpwuid(buf.st_uid);
+	if(pwd == NULL)
+		perror("getpwuid");
+	else
+		ft_putstr(pwd->pw_name);
+	write (1, " ", 1);
+	group_name = getgrgid(buf.st_gid);
+	if(group_name == NULL)
+		perror("getgrgid");
+	else
+		ft_putstr(group_name->gr_name);
+	write (1, " ", 1);
+	ft_putnbr(buf.st_size);
+	write (1, " ", 1);
+	time = ctime(&buf.st_atimespec);
+	time += 4;
+	ft_putstr(time);
+	write (1, " ", 1);
+	ft_putstr(ent);
+//	printf("serial number: %llu\n", buf.st_ino);
+
+//	printf("links: %hu\n", buf.st_nlink);
+//	printf("Amount of blocks allocated: %lld\n", buf.st_blocks);
+
+}
+
+int check_file(char *str)
+{
+	int a = 0;
+	DIR *dir;
+	struct dirent *ent;
+	struct stat buf;
+
+	if (ft_strlen(str) > 255)
+	{
+		write(1, "ls: ", 4);
+		ft_putstr(str);
+		write (1, ": File name too long\n", 20);
+	}
+	if ((dir = opendir (str)) != NULL)
+	{
+		/* print all the files and directories within directory */
+		while ((ent = readdir (dir)) != NULL) {
+			//printf ("file or dir: ");
+			//ft_putstr(ent->d_name);
+			writing_file_data(ent->d_name);
+			// и здесь кастовать lstat на file_name;
+			write(1, "\n", 1);
+		}
+		closedir (dir);
+	} else {
+		/* could not open directory */
+		if ((a = lstat(str, &buf)) == -1) // а здесь вызывается функция, которая пишет в список
+		{
+			write(1, "ls: ", 4);
+			ft_putstr(str);
+			write(1, ": No such file or directory\n", 28);
+			return EXIT_FAILURE;
+		}
+		else
+			printf("Нашел файлик!: %s\n", str);
+	}
+	return (0);
+
+}
+
+int validation(int argc, char *argv[])
+{
+	int j;
+	int result = 0;
+
+	j = 0;
+	if (argc > 1)
+	{
+		argc -= 1;
+		while (argc > 0) {
+
+//			while (argv[argc])
+//			{
+				if (argv[argc][0] == '-')
+				{
+					if (!(argv[argc][1])) {
+						write(1, "ls: -: No such file or directory\n", 33);
+						return(-1);
+					}
+					if ((result = (check_valid_option(argv[argc], result))) == -1) // если есть -, значит это флаг. Отправляемся проверять его валидность. Если возвращает -1, выходим, else return options;
+						return (-1);
+				}
+				else
+					check_file(argv[argc]); // если минуса нет, значит это файл, и надо проверять его валидность. Дальше в мейне сделать проверку на отсутствие файла.
+				argc--;
+//			}
+		}
+		return (result);
+	}
+	return (0);
+}
 
 int	main(int argc, char *argv[])
 {
 
 	int a;
-	if (!(check_dash(argc, argv)))
-		validation(argc, argv);
+	int options; // здесь будут записываться флаги в интовом варианте
+
+	options = 0;
+	//if (!(check_dash(argc, argv)))
+	if ((options = (validation(argc, argv))) == -1) // она вызывает check_valid_option, которая вернет интовый OPTIONS. Их же надо передавать туда и апдейтить с разными флагами
+		exit(EXIT_FAILURE);
+	exit(EXIT_SUCCESS);
+	//printf("options после всех манипуляций %d\n", options);
  	DIR *directory;
 	struct dirent *dirent1;
 
