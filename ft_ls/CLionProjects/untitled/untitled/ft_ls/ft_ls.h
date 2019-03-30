@@ -46,9 +46,9 @@ typedef struct s_info
 {
 	char *name;
 	size_t size;
-	long access_time;
-	long mod_time;
-	long change_time;
+	unsigned long long access_time;
+	unsigned long long mod_time;
+	unsigned long long change_time;
 	int filetype; // как лучше хранить тип файла?
 	size_t serial_number;
 // как хранить uid and gid?
