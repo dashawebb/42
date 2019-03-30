@@ -219,24 +219,25 @@ int check_valid_option(char *str, int result)
 	return (result);
 }
 
-
-typedef struct s_info
+int define_file_type(struct stat *buf, t_info *file_info)
 {
-	char *name;
-	size_t size;
-	long access_time;
-	long mod_time;
-	long change_time;
-	int filetype; // как лучше хранить тип файла?
-	size_t serial_number;
-// как хранить uid and gid?
-	char *uid;
-	char *gid;
-	int chmod_int;
-	char chmod_char;
-	char symb_link;
 
-} t_info;
+	if (S_ISREG(buf->st_mode))
+		file_info->filetype = TYPE_REG_FILE;
+	if (S_ISDIR(buf->st_mode))
+		file_info->filetype = TYPE_DIR;
+	if (S_ISCHR(buf->st_mode))
+		file_info->filetype = TYPE_CHR;
+	if (S_ISBLK(buf->st_mode))
+		file_info->filetype = TYPE_BLK;
+	if (S_ISFIFO(buf->st_mode))
+		file_info->filetype = TYPE_FIFO;
+	if (S_ISLNK(buf->st_mode))
+		file_info->filetype = TYPE_LNK;
+	if (S_ISSOCK(buf->st_mode))
+		file_info->filetype = TYPE_SOCK;
+	return (0);
+}
 
 int writing_file_data(struct dirent *ent)
 {
@@ -249,8 +250,44 @@ int writing_file_data(struct dirent *ent)
 	char *time;
 
 	a = lstat(ent, &buf);
-	attr.
-	write_chmod(&);
+
+//    typedef struct s_info
+//    {
+//        char *name;
+//        size_t size;
+//        long access_time;
+//        long mod_time;
+//        long change_time;
+//        int filetype; // как лучше хранить тип файла?
+//        size_t serial_number;
+//// как хранить uid and gid?
+//        char *uid;
+//        char *gid;
+//        int chmod_int;
+//        char chmod_char;
+//        char symb_link;
+//
+//    } t_info;
+
+    t_info file_info;
+    file_info.name = ent;
+    file_info.size = buf.st_size;
+    file_info.access_time = (unsigned long long)&buf.st_atimespec;
+    file_info.mod_time = (unsigned long long)&buf.st_mtimespec;
+    file_info.change_time = (unsigned long long)&buf.st_ctimespec;
+    define_file_type(&buf, &file_info);
+
+    file_info.serial_number = buf.st_ino;
+	pwd = getpwuid(buf.st_uid);
+	if(pwd == NULL)
+		perror("getpwuid");
+	else
+		file_info.uid = pwd->pw_name;
+	group_name = getgrgid(buf.st_gid);
+	if(group_name == NULL)
+		perror("getgrgid");
+	else
+		file_info.gid = group_name->gr_name;
 
 	print_chmod(&buf);
 	printf("chmod: %s\n", buf.st_mode);

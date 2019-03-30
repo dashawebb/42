@@ -43,8 +43,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="251" column="9" selection-start-line="251" selection-start-column="9" selection-end-line="251" selection-end-column="9" />
+            <state relative-caret-position="570">
+              <caret line="290" selection-start-line="290" selection-end-line="290" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -55,8 +55,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libft/includes/libft.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1845">
-              <caret line="123" column="20" selection-start-line="123" selection-start-column="20" selection-end-line="123" selection-end-column="20" />
+            <state relative-caret-position="1530">
+              <caret line="102" selection-start-line="102" selection-end-line="102" />
             </state>
           </provider>
         </entry>
@@ -73,8 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ft_ls/ft_ls.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" selection-start-line="43" selection-end-line="60" selection-end-column="9" />
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="14" selection-end-column="19" />
               <folding>
                 <element signature="e#330#348#0" expanded="true" />
               </folding>
@@ -102,7 +102,6 @@
     <findStrings>
       <find>bad address</find>
       <find>good+</find>
-      <find>file</find>
       <find>pwd</find>
       <find>writi</find>
       <find>writ</find>
@@ -110,23 +109,42 @@
       <find>writing</find>
       <find>symbolic</find>
       <find>validat</find>
+      <find>write_c</find>
       <find>chmod</find>
+      <find>t_info</find>
+      <find>t_infof</find>
+      <find>check_file</find>
+      <find>check_filef</find>
+      <find>name</find>
+      <find>writingf</find>
+      <find>size</find>
+      <find>timeqf</find>
+      <find>atime</find>
+      <find>tfime</find>
+      <find>timespec</find>
+      <find>time</find>
+      <find>timef</find>
+      <find>file</find>
+      <find>filetypef</find>
+      <find>serial</find>
+      <find>serialf</find>
+      <find>uid</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/ft_ls/ft_ls.h" />
         <option value="$PROJECT_DIR$/ft_ls/ft_ls.c" />
+        <option value="$PROJECT_DIR$/ft_ls/ft_ls.h" />
         <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="385" />
+    <option name="x" value="286" />
     <option name="y" value="23" />
-    <option name="width" value="2173" />
+    <option name="width" value="2272" />
     <option name="height" value="1336" />
   </component>
   <component name="ProjectView">
@@ -134,6 +152,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -150,11 +169,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
   </component>
@@ -224,11 +243,13 @@
       <workItem from="1553540054449" duration="15608000" />
       <workItem from="1553610515190" duration="4360000" />
       <workItem from="1553708398125" duration="213000" />
+      <workItem from="1553970254614" duration="697000" />
+      <workItem from="1553971411749" duration="4396000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96825000" />
+    <option name="totallyTimeSpent" value="101918000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -240,22 +261,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="385" y="23" width="2173" height="1336" extended-state="0" />
+    <frame x="286" y="23" width="2272" height="1336" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20412952" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19865471" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.3115908" weight="0.3118971" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.30941704" visible="true" weight="0.3118971" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49882683" weight="0.3995177" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49882683" weight="0.32877815" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.2515251" weight="0.32877815" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4852182" weight="0.32877815" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.6884092" side_tool="true" visible="true" weight="0.3118971" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.396861" weight="0.32877815" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.48430493" weight="0.32877815" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.69058293" side_tool="true" visible="true" weight="0.3118971" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="CMake" order="12" sideWeight="0.495542" weight="0.329582" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -275,17 +296,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ft_ls/ft_ls.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libft/includes/libft.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="123" column="20" selection-start-line="123" selection-start-column="20" selection-end-line="123" selection-end-column="20" />
+        <state relative-caret-position="1530">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
         </state>
       </provider>
     </entry>
@@ -293,16 +307,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ft_ls/ft_ls.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" selection-start-line="43" selection-end-line="60" selection-end-column="9" />
-          <folding>
-            <element signature="e#330#348#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -316,10 +320,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ft_ls/ft_ls.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="14" selection-end-column="19" />
+          <folding>
+            <element signature="e#330#348#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ft_ls/ft_ls.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="251" column="9" selection-start-line="251" selection-start-column="9" selection-end-line="251" selection-end-column="9" />
+        <state relative-caret-position="570">
+          <caret line="290" selection-start-line="290" selection-end-line="290" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
