@@ -31,7 +31,7 @@ int int_column_width(t_list *file_details) // здесь принимается 
     // найти наибольший элемент в списке
     ((t_info *)file_details->content)->size;
 
-    qsort()
+    // qsort()
 
 
 
@@ -45,10 +45,10 @@ int int_column_width(t_list *file_details) // здесь принимается 
 
 }
 
-int char_column_width(t_list *file_details, )
+int char_column_width(t_list *file_details)
 {
 
-    ft_strlen()
+    //ft_strlen();
     
 
 }

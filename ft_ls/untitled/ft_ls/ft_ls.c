@@ -8,7 +8,6 @@ int check_valid_option(char *str, int result)
 
     i = 1;
     index = 0;
-
     if ((str[i] == '-') && (!(str[i + 1])))
         return (0); // это норм, флаг '--' валидный, возвращаем нолик
     while(str[i])
@@ -30,12 +29,33 @@ int check_valid_option(char *str, int result)
 //				result += (1 << (index));
 //				result += (1 << (index));
 
-            for (int z = 0; z < 100 && OPTIONS[z] != str[i]; z++)
-                index = z + 1;
+//            for (int z = 0; z < 100 && OPTIONS[z] != str[i]; z++)
+//                index = z + 1;
+
             //printf("eto index %d\n", index);
-            if (!(((result) >> index) & 1))
-                (result) += (1 << (index));
-            //printf("result: %d\n", result);
+
+            index = (ft_strchr(OPTIONS, str[i])) - str;
+            if (index == 1)
+            {
+                result &= ~(1 << 24 | 1 << 16);
+                printf("О нихуя\n");
+            }
+
+            else if (index == 16)
+                result &= ~(1 << 1 | 1 << 24);
+            else if (index == 24)
+                result &= ~(1 << 1 | 1 << 16);
+            else if (index == 2)
+                result &= ~(1 << 4);
+            else if (index == 4)
+                result &= ~(1 << 2);
+            if (!((result >> index) & 1))
+                result += (1 << (index));
+            //100000000000000001
+            //"ACLOPRST@adefhiklmnoprst1"
+
+
+            printf("result: %d\n", result);
             //printf("the letter was: %c\n", str[i]);
             i++;
         }

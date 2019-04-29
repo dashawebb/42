@@ -5,6 +5,18 @@ CMakeFiles/untitled.dir/ft_ls/ft_ls.c.o: ../libft/includes/libft.h
 CMakeFiles/untitled.dir/ft_ls/ft_ls.c.o: ../ft_ls/ft_ls.c
 CMakeFiles/untitled.dir/ft_ls/ft_ls.c.o: ../ft_ls/ft_ls.h
 
+CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.o: ../libft/includes/libft.h
+CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.o: ../ft_ls/ft_ls.h
+CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.o: ../ft_ls/ft_rbtclr.c
+
+CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.o: ../libft/includes/libft.h
+CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.o: ../ft_ls/ft_ls.h
+CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.o: ../ft_ls/ft_rbtnew.c
+
+CMakeFiles/untitled.dir/ft_ls/ft_rbtroot.c.o: ../libft/includes/libft.h
+CMakeFiles/untitled.dir/ft_ls/ft_rbtroot.c.o: ../ft_ls/ft_ls.h
+CMakeFiles/untitled.dir/ft_ls/ft_rbtroot.c.o: ../ft_ls/ft_rbtroot.c
+
 CMakeFiles/untitled.dir/ft_ls/list_functions.c.o: ../libft/includes/libft.h
 CMakeFiles/untitled.dir/ft_ls/list_functions.c.o: ../ft_ls/ft_ls.h
 CMakeFiles/untitled.dir/ft_ls/list_functions.c.o: ../ft_ls/list_functions.c
@@ -12,6 +24,10 @@ CMakeFiles/untitled.dir/ft_ls/list_functions.c.o: ../ft_ls/list_functions.c
 CMakeFiles/untitled.dir/ft_ls/output.c.o: ../libft/includes/libft.h
 CMakeFiles/untitled.dir/ft_ls/output.c.o: ../ft_ls/ft_ls.h
 CMakeFiles/untitled.dir/ft_ls/output.c.o: ../ft_ls/output.c
+
+CMakeFiles/untitled.dir/ft_ls/rbt_add.c.o: ../libft/includes/libft.h
+CMakeFiles/untitled.dir/ft_ls/rbt_add.c.o: ../ft_ls/ft_ls.h
+CMakeFiles/untitled.dir/ft_ls/rbt_add.c.o: ../ft_ls/rbt_add.c
 
 CMakeFiles/untitled.dir/ft_ls/sorting.c.o: ../libft/includes/libft.h
 CMakeFiles/untitled.dir/ft_ls/sorting.c.o: ../ft_ls/ft_ls.h

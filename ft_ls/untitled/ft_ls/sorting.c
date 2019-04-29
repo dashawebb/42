@@ -49,8 +49,7 @@ int define_file_type(struct stat *buf, t_info *file_info)
     return (0);
 }
 
-int writing_file_data(struct dirent *ent)
-{
+int writing_file_data(struct dirent *ent) {
     int a;
     struct stat buf;
     struct passwd *pwd;
@@ -63,22 +62,22 @@ int writing_file_data(struct dirent *ent)
 
     t_info file_info;
     file_info.name = ent;
-    file_info.path = (char *)malloc(sizeof(char*) * ft_strlen((file_info.name) + 3));
+    file_info.path = (char *) malloc(sizeof(char *) * ft_strlen((file_info.name) + 3));
     file_info.path = ft_strjoin("./", file_info.name); // но это только для файлов?
     file_info.size = buf.st_size;
-    file_info.access_time = (unsigned long long)&buf.st_atimespec;
-    file_info.mod_time = (unsigned long long)&buf.st_mtimespec;
-    file_info.change_time = (unsigned long long)&buf.st_ctimespec;
+    file_info.access_time = (unsigned long long) &buf.st_atimespec;
+    file_info.mod_time = (unsigned long long) &buf.st_mtimespec;
+    file_info.change_time = (unsigned long long) &buf.st_ctimespec;
     define_file_type(&buf, &file_info);
 
     file_info.serial_number = buf.st_ino;
     pwd = getpwuid(buf.st_uid);
-    if(pwd == NULL)
+    if (pwd == NULL)
         perror("getpwuid");
     else
         file_info.uid = pwd->pw_name;
     group_name = getgrgid(buf.st_gid);
-    if(group_name == NULL)
+    if (group_name == NULL)
         perror("getgrgid");
     else
         file_info.gid = group_name->gr_name;
@@ -88,22 +87,22 @@ int writing_file_data(struct dirent *ent)
 //	file_info.symb_link = getting_symlink(&file_info); // здесь invalid argument, нужен full_path
 
 // к этому моменту надо уже спарсить флаги и понимать, по какому принципу идет сортировка
-    t_rbtree *file_info_tree;
-
-    if (file_info_tree == NULL)
-        file_info_tree = ft_rbtnew((void *)&file_info, sizeof(t_info));
-    else
-        file_info_tree = ft_rbtadd(**file_info_tree, *file_info,
-    int (*cmp)(t_rbtree *elem1, t_rbtree *elem2))
-
-
-
-
-    t_rbtree		*ft_rbtnew(void const *content, size_t content_size)
+//    t_rbtree *file_info_tree;
+//
+//    if (file_info_tree == NULL)
+//        file_info_tree = ft_rbtnew((void *)&file_info, sizeof(t_info));
+//    else
+//        file_info_tree = ft_rbtadd(**file_info_tree, *file_info,
+//    int (*cmp)(t_rbtree *elem1, t_rbtree *elem2))
+//
 
 
-    void		ft_rbtadd(t_rbtree **root, t_rbtree *new,
-                          int (*cmp)(t_rbtree *elem1, t_rbtree *elem2))
+
+//    t_rbtree		*ft_rbtnew(void const *content, size_t content_size)
+//
+//
+//    void		ft_rbtadd(t_rbtree **root, t_rbtree *new,
+//                          int (*cmp)(t_rbtree *elem1, t_rbtree *elem2))
 
 
 
@@ -141,14 +140,10 @@ int writing_file_data(struct dirent *ent)
 
 }
 
-int name_cmp(t_rbtree *elem1, t_rbtree *elem2)
-{
-    return (ft_strcmp(elem1))
-
-    elem1->content->
-
-
-
-
-
-}
+//int name_cmp(t_rbtree *elem1, t_rbtree *elem2)
+//{
+//    int i;
+//    return (ft_strcmp(elem1, elem2));
+//
+//    elem1->content->
+//}
