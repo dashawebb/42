@@ -1,0 +1,44 @@
+#******************************************************************************#
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: creek <marvin@42.fr>                       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/04/30 19:39:19 by creek             #+#    #+#              #
+#    Updated: 2019/04/30 21:39:44 by creek            ###   ########.fr        #
+#                                                                              #
+#******************************************************************************#
+
+NAME = ft_ls
+#FLAGS = -Wall -Werror -Wextra -I includes/ -I libft/includes
+#FLAGS = -I includes/ -I libft/includes
+LIBFLAGS = -L./libft -lft
+FILES = ft_ls.c ft_rbtnew.c output.c sorting.c ft_rbtclr.c ft_rbtroot.c main.c rbt_add.c
+SRCS = $(addprefix srcs/, $(FILES))
+OBJ = $(addprefix objectives/, $(FILES:.c=.o))
+all: $(NAME)
+
+$(NAME):$(OBJ) | lib
+	@cp libft/libft.a ./$(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+
+objectives/%.o: %.c | objectives
+	gcc $(FLAGS) -o $@ -c $^
+
+re: fclean all
+
+lib:
+	make -C ./libft
+
+clean:
+	rm -rf objectives/
+	make clean -C ./libft
+
+fclean: clean
+	make fclean -C ./libft
+	rm -rf $(NAME)
+
+objectives:
+	mkdir objectives/

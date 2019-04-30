@@ -38,7 +38,7 @@ int check_valid_option(char *str, int result)
             if (index == 1)
             {
                 result &= ~(1 << 24 | 1 << 16);
-                printf("О нихуя\n");
+                //printf("О нихуя\n");
             }
 
             else if (index == 16)
