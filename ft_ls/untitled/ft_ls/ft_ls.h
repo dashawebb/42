@@ -43,7 +43,7 @@
 #include <grp.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "libft.h"
+#include "libft/includes/libft.h"
 
 #define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
 #define BYTE_TO_BINARY(byte)  \
@@ -94,17 +94,17 @@ typedef struct	s_rbtree
 
 int check_valid_option(char *str, int result);
 
-int check_file(char *str);
+int check_file(char *str, int result);
 
 int validation(int argc, char *argv[]);
 
-int writing_file_data(struct dirent *ent);
+int writing_file_data_long(struct dirent *ent);
 
 void writing_chmod(struct stat *buf, t_info *file_info);
 
 int define_file_type(struct stat *buf, t_info *file_info);
 
-int writing_file_data(struct dirent *ent);
+int writing_file_data_long(struct dirent *ent);
 
 t_list	*ft_lstnew(void const *content, size_t content_size);
 

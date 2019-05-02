@@ -6,20 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../libft/includes/libft.h
-string.h
--
-stdlib.h
--
-unistd.h
--
-stddef.h
--
-ctype.h
--
-limits.h
--
-
 /Users/creek/CLionProjects/untitled/ft_ls/ft_ls.c
 ft_ls.h
 /Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
@@ -49,6 +35,20 @@ unistd.h
 -
 stdlib.h
 -
-libft.h
-/Users/creek/CLionProjects/untitled/ft_ls/libft.h
+libft/includes/libft.h
+/Users/creek/CLionProjects/untitled/ft_ls/libft/includes/libft.h
+
+/Users/creek/CLionProjects/untitled/ft_ls/libft/includes/libft.h
+string.h
+-
+stdlib.h
+-
+unistd.h
+-
+stddef.h
+-
+ctype.h
+-
+limits.h
+-
 

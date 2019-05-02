@@ -49,19 +49,20 @@ int define_file_type(struct stat *buf, t_info *file_info)
     return (0);
 }
 
-int writing_file_data(struct dirent *ent) {
+    int writing_file_data_long(struct dirent *ent) {
+
     int a;
     struct stat buf;
     struct passwd *pwd;
     struct group *group_name;
-    t_info attr;
+    //t_info attr;
 
-    char *time;
+    //char *time;
 
-    a = lstat(ent, &buf);
+    a = lstat(ent->d_name, &buf);
 
     t_info file_info;
-    file_info.name = ent;
+    file_info.name = ent->d_name;
     file_info.path = (char *) malloc(sizeof(char *) * ft_strlen((file_info.name) + 3));
     file_info.path = ft_strjoin("./", file_info.name); // но это только для файлов?
     file_info.size = buf.st_size;
@@ -137,7 +138,7 @@ int writing_file_data(struct dirent *ent) {
 
 //	printf("links: %hu\n", buf.st_nlink);
 //	printf("Amount of blocks allocated: %lld\n", buf.st_blocks);
-
+    return (0);
 }
 
 //int name_cmp(t_rbtree *elem1, t_rbtree *elem2)

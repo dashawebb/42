@@ -34,21 +34,38 @@ int check_valid_option(char *str, int result)
 
             //printf("eto index %d\n", index);
 
-            index = (ft_strchr(OPTIONS, str[i])) - str;
+            index = (ft_strchr(OPTIONS, str[i])) - OPTIONS;
+            //printf("a vot возврат strchr %s\n", ft_strchr(OPTIONS, str[i]));
+            printf("a vot index %d\n", index);
             if (index == 1)
             {
-                result &= ~(1 << 24 | 1 << 16);
-                //printf("О нихуя\n");
+                result &= ~(1 << 24 | 1 << 16); // тогда выключаем биты
+//                printf("Здесь C\n");
             }
 
             else if (index == 16)
+            {
                 result &= ~(1 << 1 | 1 << 24);
+//                printf("здесь l\n");
+            }
+
             else if (index == 24)
+            {
                 result &= ~(1 << 1 | 1 << 16);
+//                printf("здесь 1\n");
+            }
+
             else if (index == 2)
+            {
                 result &= ~(1 << 4);
+                printf("здесь L\n");
+            }
+
             else if (index == 4)
+            {
                 result &= ~(1 << 2);
+                printf("здесь P\n");
+            }
             if (!((result >> index) & 1))
                 result += (1 << (index));
             //100000000000000001
@@ -63,7 +80,10 @@ int check_valid_option(char *str, int result)
     return (result);
 }
 
-int check_file(char *str)
+
+
+
+int check_file(char *str, int result)
 {
     int a = 0;
     DIR *dir;
@@ -76,13 +96,18 @@ int check_file(char *str)
         ft_putstr(str);
         write (1, ": File name too long\n", 20);
     }
+    printf("%d\n", result); /// ??? why 0 here??
     if ((dir = opendir (str)) != NULL)
     {
         /* print all the files and directories within directory */
         while ((ent = readdir (dir)) != NULL) {
             //printf ("file or dir: ");
             //ft_putstr(ent->d_name);
-            writing_file_data(ent->d_name);
+            if (result)
+            {
+                printf("here's something long\n");
+                writing_file_data_long(ent);
+            }
             // и здесь кастовать lstat на file_name;
             write(1, "\n", 1);
         }
@@ -118,15 +143,17 @@ int validation(int argc, char *argv[])
 //			{
             if (argv[argc][0] == '-')
             {
+                result = (check_valid_option(argv[argc], result)); // not sure if it's not going to break valid
+                printf("here's your result %d\n", check_valid_option(argv[argc], result));
                 if (!(argv[argc][1])) {
                     write(1, "ls: -: No such file or directory\n", 33);
                     return(-1);
                 }
-                if ((result = (check_valid_option(argv[argc], result))) == -1) // если есть -, значит это флаг. Отправляемся проверять его валидность. Если возвращает -1, выходим, else return options;
+                if (result == -1) // если есть -, значит это флаг. Отправляемся проверять его валидность. Если возвращает -1, выходим, else return options;
                     return (-1);
             }
             else
-                check_file(argv[argc]); // если минуса нет, значит это файл, и надо проверять его валидность. Дальше в мейне сделать проверку на отсутствие файла.
+                check_file(argv[argc], result); // если минуса нет, значит это файл, и надо проверять его валидность. Дальше в мейне сделать проверку на отсутствие файла.
             argc--;
 //			}
         }

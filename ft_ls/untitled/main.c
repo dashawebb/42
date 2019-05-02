@@ -12,6 +12,7 @@ int sort_by_time(long time_1, long time_2) {
 		if (time_2 < time_1)
 			return (-1);
 	}
+	return (0);
 }
 
 
@@ -128,6 +129,7 @@ int print_attributes(char *path)
 
 	free(buf);
 //	exit(EXIT_SUCCESS);
+    return (0);
 }
 
 static char		*reverse(char *str)

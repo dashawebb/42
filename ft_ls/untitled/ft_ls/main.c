@@ -12,6 +12,7 @@ int sort_by_time(long time_1, long time_2) {
 		if (time_2 < time_1)
 			return (-1);
 	}
+	return (0);
 }
 
 
@@ -127,27 +128,28 @@ int print_attributes(char *path)
 	}
 
 	free(buf);
+	return (0);
 //	exit(EXIT_SUCCESS);
 }
 
-static char		*reverse(char *str)
-{
-    int		i;
-    int		j;
-    char	c;
-
-    i = 0;
-    j = ft_strlen(str) - 1;
-    while (i < j)
-    {
-        c = str[i];
-        str[i] = str[j];
-        str[j] = c;
-        i++;
-        j--;
-    }
-    return (str);
-}
+//static char		*reverse(char *str)
+//{
+//    int		i;
+//    int		j;
+//    char	c;
+//
+//    i = 0;
+//    j = ft_strlen(str) - 1;
+//    while (i < j)
+//    {
+//        c = str[i];
+//        str[i] = str[j];
+//        str[j] = c;
+//        i++;
+//        j--;
+//    }
+//    return (str);
+//}
 
 //void		free_list(t_list *head)
 //{
@@ -161,38 +163,38 @@ static char		*reverse(char *str)
 //	}
 //}
 
-char *getting_symlink(t_info *file_info)
-{
-	char *linkname;
-
-	linkname = malloc(file_info->size + 1);
-	if (linkname == NULL) {
-		fprintf(stderr, "insufficient memory\n");
-		exit(EXIT_FAILURE);
-	}
-	ssize_t r;
-	r = readlink(file_info->path, linkname, file_info->size + 1);
-
-	if (r < 0) {
-		perror("lstat");
-		exit(EXIT_FAILURE);
-	}
-
-	if (r > file_info->size) {
-		fprintf(stderr, "symlink increased in size "
-						"between lstat() and readlink()\n");
-		exit(EXIT_FAILURE);
-	}
-
-	linkname[file_info->size] = '\0';
+//char *getting_symlink(t_info *file_info)
+//{
+//	char *linkname;
 //
-//	printf("'%s' points to '%s'\n", file_info.path, linkname);
+//	linkname = malloc(file_info->size + 1);
+//	if (linkname == NULL) {
+//		fprintf(stderr, "insufficient memory\n");
+//		exit(EXIT_FAILURE);
+//	}
+//	ssize_t r;
+//	r = readlink(file_info->path, linkname, file_info->size + 1);
 //
+//	if (r < 0) {
+//		perror("lstat");
+//		exit(EXIT_FAILURE);
+//	}
 //
-//	printf("%s eta char chmdd - \n", file_info.chmod_char);
-
-	return (linkname);
-}
+//	if (r > file_info->size) {
+//		fprintf(stderr, "symlink increased in size "
+//						"between lstat() and readlink()\n");
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	linkname[file_info->size] = '\0';
+////
+////	printf("'%s' points to '%s'\n", file_info.path, linkname);
+////
+////
+////	printf("%s eta char chmdd - \n", file_info.chmod_char);
+//
+//	return (linkname);
+//}
 
 int	main(int argc, char *argv[])
 {
