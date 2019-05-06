@@ -28,7 +28,6 @@ int check_valid_option(char *str, int result)
 //			if (!((result >> (31 - index)) & 1));
 //				result += (1 << (index));
 //				result += (1 << (index));
-
 //            for (int z = 0; z < 100 && OPTIONS[z] != str[i]; z++)
 //                index = z + 1;
 
@@ -36,7 +35,6 @@ int check_valid_option(char *str, int result)
 
             index = (ft_strchr(OPTIONS, str[i])) - OPTIONS;
             //printf("a vot возврат strchr %s\n", ft_strchr(OPTIONS, str[i]));
-            printf("a vot index %d\n", index);
             if (index == 1)
             {
                 result &= ~(1 << 24 | 1 << 16); // тогда выключаем биты
@@ -80,41 +78,38 @@ int check_valid_option(char *str, int result)
     return (result);
 }
 
-
-
-
 int check_file(char *str, int result)
 {
     int a = 0;
     DIR *dir;
-    struct dirent *ent;
+    char *d_name;
     struct stat buf;
-
+    int i = 0;
     if (ft_strlen(str) > 255)
     {
         write(1, "ls: ", 4);
         ft_putstr(str);
         write (1, ": File name too long\n", 20);
     }
-    printf("%d\n", result); /// ??? why 0 here??
     if ((dir = opendir (str)) != NULL)
     {
         /* print all the files and directories within directory */
-        while ((ent = readdir (dir)) != NULL) {
-            //printf ("file or dir: ");
-            //ft_putstr(ent->d_name);
-            if (result)
+        while ((d_name = ft_strdup(readdir (dir)->d_name))) { // в этом цикле очень дохуя вертится
+//            printf ("file or dir: \n"); // тут надо замаллочить под структуру, нужно только ent -> d_name
+//            ft_putstr(ent->d_name); // ent -> d_name содержит имена всех файлов и папок
+            printf ("\n");
+            if ((result >> 16) & 1) // здесь для формата long
             {
+                printf("%d\n", i++);
                 printf("here's something long\n");
-                writing_file_data_long(ent);
+                writing_file_data_long(d_name);
             }
-            // и здесь кастовать lstat на file_name;
             write(1, "\n", 1);
         }
         closedir (dir);
     } else {
         /* could not open directory */
-        if ((a = lstat(str, &buf)) == -1) // а здесь вызывается функция, которая пишет в список
+        if ((a = lstat(str, &buf)) == -1) // а здесь вызывается функция, которая пишет в
         {
             write(1, "ls: ", 4);
             ft_putstr(str);
@@ -136,16 +131,12 @@ int validation(int argc, char *argv[])
     j = 0;
     if (argc > 1)
     {
-        argc -= 1;
-        while (argc > 0) {
+        while (++j < argc) {
 
-//			while (argv[argc])
-//			{
-            if (argv[argc][0] == '-')
+            if (argv[j][0] == '-')
             {
-                result = (check_valid_option(argv[argc], result)); // not sure if it's not going to break valid
-                printf("here's your result %d\n", check_valid_option(argv[argc], result));
-                if (!(argv[argc][1])) {
+                result = (check_valid_option(argv[j], result)); // not sure if it's not going to break valid
+                if (!(argv[j][1])) {
                     write(1, "ls: -: No such file or directory\n", 33);
                     return(-1);
                 }
@@ -153,9 +144,7 @@ int validation(int argc, char *argv[])
                     return (-1);
             }
             else
-                check_file(argv[argc], result); // если минуса нет, значит это файл, и надо проверять его валидность. Дальше в мейне сделать проверку на отсутствие файла.
-            argc--;
-//			}
+                check_file(argv[j], result); // если минуса нет, значит это файл, и надо проверять его валидность. Дальше в мейне сделать проверку на отсутствие файла.
         }
         return (result);
     }

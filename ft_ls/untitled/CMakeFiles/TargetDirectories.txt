@@ -1,0 +1,3 @@
+/Users/creek/CLionProjects/untitled/CMakeFiles/rebuild_cache.dir
+/Users/creek/CLionProjects/untitled/CMakeFiles/edit_cache.dir
+/Users/creek/CLionProjects/untitled/CMakeFiles/untitled.dir

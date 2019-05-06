@@ -6,7 +6,7 @@
 #    By: creek <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/30 19:39:19 by creek             #+#    #+#              #
-#    Updated: 2019/05/02 23:56:22 by creek            ###   ########.fr        #
+#    Updated: 2019/05/06 17:52:42 by creek            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,7 +21,7 @@ FLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	gcc $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(LIB_INCS)
+	gcc $(FLAGS) -g -o $(NAME) $(OBJ) $(LIBFT) $(LIB_INCS)
 
 $(LIBFT):
 	make -C $(LIB_DIR)

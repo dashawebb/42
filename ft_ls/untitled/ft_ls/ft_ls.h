@@ -44,6 +44,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "libft/includes/libft.h"
+#include <errno.h>
 
 #define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
 #define BYTE_TO_BINARY(byte)  \
@@ -98,13 +99,11 @@ int check_file(char *str, int result);
 
 int validation(int argc, char *argv[]);
 
-int writing_file_data_long(struct dirent *ent);
-
 void writing_chmod(struct stat *buf, t_info *file_info);
 
 int define_file_type(struct stat *buf, t_info *file_info);
 
-int writing_file_data_long(struct dirent *ent);
+int writing_file_data_long(char *name);
 
 t_list	*ft_lstnew(void const *content, size_t content_size);
 
