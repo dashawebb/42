@@ -83,6 +83,7 @@ int check_file(char *str, int result)
     int a = 0;
     DIR *dir;
     char *d_name;
+    struct dirent *ddir;
     struct stat buf;
     int i = 0;
     if (ft_strlen(str) > 255)
@@ -94,7 +95,11 @@ int check_file(char *str, int result)
     if ((dir = opendir (str)) != NULL)
     {
         /* print all the files and directories within directory */
-        while ((d_name = ft_strdup(readdir (dir)->d_name))) { // в этом цикле очень дохуя вертится
+        while ((ddir = readdir (dir)) != NULL)
+        {
+            d_name = ft_strdup(ddir->d_name);
+                //(d_name = ft_strdup(readdir (dir)->d_name)) != NULL)
+                 // в этом цикле очень дохуя вертится
 //            printf ("file or dir: \n"); // тут надо замаллочить под структуру, нужно только ent -> d_name
 //            ft_putstr(ent->d_name); // ent -> d_name содержит имена всех файлов и папок
             printf ("\n");
@@ -102,8 +107,10 @@ int check_file(char *str, int result)
             {
                 printf("%d\n", i++);
                 printf("here's something long\n");
-                writing_file_data_long(d_name);
+                writing_file_data_long(d_name, str);
             }
+            else
+                writing_file_data(d_name, str);
             write(1, "\n", 1);
         }
         closedir (dir);
@@ -116,8 +123,18 @@ int check_file(char *str, int result)
             write(1, ": No such file or directory\n", 28);
             return EXIT_FAILURE;
         }
+        else if ((result >> 16) & 1)
+        {
+            d_name = str; // вот эту хуйню надо будет убрать.
+            printf("Нашел файлик в формате long!: %s\n", str);
+            writing_file_data_long(d_name, str);
+        }
         else
+        {
+            d_name = str; // вот эту хуйню надо будет убрать.
             printf("Нашел файлик!: %s\n", str);
+            writing_file_data(d_name, str);
+        }
     }
     return (0);
 

@@ -103,7 +103,9 @@ void writing_chmod(struct stat *buf, t_info *file_info);
 
 int define_file_type(struct stat *buf, t_info *file_info);
 
-int writing_file_data_long(char *name);
+int writing_file_data_long(char *d_name, char *str);
+
+int writing_file_data(char *d_name, char *str);
 
 t_list	*ft_lstnew(void const *content, size_t content_size);
 

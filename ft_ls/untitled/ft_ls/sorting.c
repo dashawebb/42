@@ -49,12 +49,13 @@ int define_file_type(struct stat *buf, t_info *file_info)
     return (0);
 }
 
-    int writing_file_data_long(char *d_name) {
+    int writing_file_data_long(char *d_name, char *str) {
 
     int a;
     struct stat buf;
-//    struct passwd *pwd = NULL;
-//    struct group *group_name;
+    char *d_name_path;
+    struct passwd *pwd = NULL;
+    struct group *group_name;
     //t_info attr;
 
     //char *time;
@@ -62,9 +63,12 @@ int define_file_type(struct stat *buf, t_info *file_info)
 //    printf("%s\n", ent->d_name);
     errno = 0;
 
-    a = lstat(d_name, &buf);
+    d_name_path = ft_strjoin(str, "/");
+    d_name_path = ft_strjoin(d_name_path, d_name);
+    a = lstat(d_name_path, &buf);
 //        printf("%s\n", strerror(errno));
-    printf("%d %s\n", a, strerror(errno));
+/* lstat падает на файлах, потому что я передаю ему имя папки   */
+    printf("возврат lstat %d\n", a);
     t_info file_info;
     file_info.name = d_name;
     file_info.path = (char *)malloc(sizeof(char *) * ft_strlen((file_info.name) + 3));
@@ -74,36 +78,31 @@ int define_file_type(struct stat *buf, t_info *file_info)
     file_info.mod_time = (unsigned long long) &buf.st_mtimespec;
     file_info.change_time = (unsigned long long) &buf.st_ctimespec;
     define_file_type(&buf, &file_info);
-    printf("OOOK\n");
-
     file_info.serial_number = buf.st_ino;
-    printf("buf.st_uid: %d\n", buf.st_uid);
-        printf("OOOK1\n");
-//    pwd = getpwuid(buf.st_uid); // здесь записывается uid
-//    if (pwd == NULL)
-//        perror("getpwuid");
-//    else
-// не очень понятно, как теперь обрабатывать ошибку?
+    pwd = getpwuid(buf.st_uid); // здесь записывается uid
+    if (pwd == NULL)
+        perror("getpwuid");
+    else
+        file_info.uid = pwd->pw_name;
+//    char *name = ft_strdup(getpwuid(buf.st_uid)->pw_name);
+//    if (!getpwuid(buf.st_uid) || !getpwuid(buf.st_uid)->pw_name)
+//        printf("UPAL\n");
+//    else {
+//        file_info.uid = ft_strdup(getpwuid(buf.st_uid)->pw_name);
+//        printf("here's your uid blya: %s\n", file_info.uid);
+//    }
+//        printf("OOOK2\n");
 
-    // file_info.uid = pwd->pw_name;
-    //char *name = ft_strdup(getpwuid(buf.st_uid)->pw_name);
-    if (!getpwuid(buf.st_uid) || !getpwuid(buf.st_uid)->pw_name)
-        printf("UPAL\n");
-    else {
-        file_info.uid = ft_strdup(getpwuid(buf.st_uid)->pw_name);
-        printf("here's your uid blya: %s\n", file_info.uid);
-    }
-        printf("OOOK2\n");
-//        group_name = getgrgid(buf.st_gid); // здесь grid
-//    if (group_name == NULL)
-//        perror("getgrgid");
-//    else
-//        file_info.gid = group_name->gr_name;
-    file_info.gid = ft_strdup(getgrgid(buf.st_gid)->gr_name);
-    file_info.chmod_int = buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO); // надо ли перевести его в восьмеричную систему?
-    writing_chmod(&buf, &file_info); // здесь происходит запись в chmod_char
-    file_info.links = buf.st_nlink;
-        printf("OOOK3\n");
+    group_name = getgrgid(buf.st_gid); // здесь grid
+    if (group_name == NULL)
+        perror("getgrgid");
+    else
+        file_info.gid = group_name->gr_name;
+//    file_info.gid = ft_strdup(getgrgid(buf.st_gid)->gr_name);
+//    file_info.chmod_int = buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO); // надо ли перевести его в восьмеричную систему?
+//    writing_chmod(&buf, &file_info); // здесь происходит запись в chmod_char
+//    file_info.links = buf.st_nlink;
+
 //	file_info.symb_link = getting_symlink(&file_info); // здесь invalid argument, нужен full_path
 
 // к этому моменту надо уже спарсить флаги и понимать, по какому принципу идет сортировка
@@ -159,6 +158,40 @@ int define_file_type(struct stat *buf, t_info *file_info)
 //	printf("Amount of blocks allocated: %lld\n", buf.st_blocks);
     return (0);
 }
+
+    int writing_file_data(char *d_name, char *str)
+    {
+        int a;
+        struct stat buf;
+        struct passwd *pwd = NULL;
+        struct group *group_name;
+        a = lstat(d_name, &buf);
+        printf("возврат lstat %d\n", a);
+        t_info file_info;
+        file_info.name = d_name;
+        file_info.path = (char *)malloc(sizeof(char *) * ft_strlen((file_info.name) + 3));
+        file_info.path = ft_strjoin("./", file_info.name); // но это только для файлов?
+        file_info.size = buf.st_size;
+        /* че из этого мне оставить?? */
+
+        file_info.access_time = (unsigned long long) &buf.st_atimespec;
+        file_info.mod_time = (unsigned long long) &buf.st_mtimespec;
+        file_info.change_time = (unsigned long long) &buf.st_ctimespec;
+        define_file_type(&buf, &file_info);
+        file_info.serial_number = buf.st_ino;
+        pwd = getpwuid(buf.st_uid); // здесь записывается uid
+        if (pwd == NULL)
+            perror("getpwuid");
+        else
+            file_info.uid = pwd->pw_name;
+        group_name = getgrgid(buf.st_gid); // здесь grid
+        if (group_name == NULL)
+            perror("getgrgid");
+        else
+            file_info.gid = group_name->gr_name;
+        str = "abc";
+        return (0);
+    }
 
 //int name_cmp(t_rbtree *elem1, t_rbtree *elem2)
 //{

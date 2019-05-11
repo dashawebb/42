@@ -206,6 +206,7 @@ int	main(int argc, char *argv[])
 	//if (!(check_dash(argc, argv)))
 	if ((options = (validation(argc, argv))) == -1) // она вызывает check_valid_option, которая вернет интовый OPTIONS. Их же надо передавать туда и апдейтить с разными флагами
 		exit(EXIT_FAILURE);
+	printf("doshel\n");
 //	exit(EXIT_SUCCESS);
 	//printf("options после всех манипуляций %d\n", options);
  	DIR *directory;
