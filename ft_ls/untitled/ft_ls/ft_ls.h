@@ -103,15 +103,25 @@ void writing_chmod(struct stat *buf, t_info *file_info);
 
 int define_file_type(struct stat *buf, t_info *file_info);
 
-int writing_file_data_long(char *d_name, char *str);
+int writing_file_data_long_dir(char *d_name, char *str, int result);
 
-int writing_file_data(char *d_name, char *str);
+int writing_file_data_dir(char *d_name, char *str, int result);
+
+int writing_file_data_long(char *str, int result);
+
+int writing_file_data(char *str, int result);
+
+int rbt_insertion_func(t_info file_info, int result);
 
 t_list	*ft_lstnew(void const *content, size_t content_size);
 
 void	ft_listadd_to_end(t_list **begin_list, t_list *new);
 
 void	free_list(t_list *head);
+
+int ft_ctime_cmp(t_info *file_info);
+
+int file_size_cmp(t_info *file_info);
 
 int sort_lexic_rev(char *name_1, char *name_2);
 

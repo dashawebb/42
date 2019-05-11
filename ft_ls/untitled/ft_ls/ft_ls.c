@@ -107,10 +107,10 @@ int check_file(char *str, int result)
             {
                 printf("%d\n", i++);
                 printf("here's something long\n");
-                writing_file_data_long(d_name, str);
+                writing_file_data_long_dir(d_name, str, result);
             }
             else
-                writing_file_data(d_name, str);
+                writing_file_data_dir(d_name, str, result);
             write(1, "\n", 1);
         }
         closedir (dir);
@@ -125,15 +125,13 @@ int check_file(char *str, int result)
         }
         else if ((result >> 16) & 1)
         {
-            d_name = str; // вот эту хуйню надо будет убрать.
             printf("Нашел файлик в формате long!: %s\n", str);
-            writing_file_data_long(d_name, str);
+            writing_file_data_long(str, result);
         }
         else
         {
-            d_name = str; // вот эту хуйню надо будет убрать.
             printf("Нашел файлик!: %s\n", str);
-            writing_file_data(d_name, str);
+            writing_file_data(str, result);
         }
     }
     return (0);

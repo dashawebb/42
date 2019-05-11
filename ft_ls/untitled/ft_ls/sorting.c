@@ -43,13 +43,13 @@ int define_file_type(struct stat *buf, t_info *file_info)
     if (S_ISFIFO(buf->st_mode))
         file_info->filetype = TYPE_FIFO;
     if (S_ISLNK(buf->st_mode))
-        file_info->filetype = TYPE_LNK;
+        file_info->filetype = TYPE_LNK;§
     if (S_ISSOCK(buf->st_mode))
         file_info->filetype = TYPE_SOCK;
     return (0);
 }
 
-    int writing_file_data_long(char *d_name, char *str) {
+    int writing_file_data_long_dir(char *d_name, char *str, int result) {
 
     int a;
     struct stat buf;
@@ -99,45 +99,12 @@ int define_file_type(struct stat *buf, t_info *file_info)
     else
         file_info.gid = group_name->gr_name;
 //    file_info.gid = ft_strdup(getgrgid(buf.st_gid)->gr_name);
-//    file_info.chmod_int = buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO); // надо ли перевести его в восьмеричную систему?
-//    writing_chmod(&buf, &file_info); // здесь происходит запись в chmod_char
+    file_info.chmod_int = buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO); // надо ли перевести его в восьмеричную систему?
+    writing_chmod(&buf, &file_info); // здесь происходит запись в chmod_char
+    rbt_insertion_func(file_info, result);
 //    file_info.links = buf.st_nlink;
 
 //	file_info.symb_link = getting_symlink(&file_info); // здесь invalid argument, нужен full_path
-
-// к этому моменту надо уже спарсить флаги и понимать, по какому принципу идет сортировка
-//    t_rbtree *file_info_tree;
-//
-//    if (file_info_tree == NULL)
-//        file_info_tree = ft_rbtnew((void *)&file_info, sizeof(t_info));
-//    else
-//        file_info_tree = ft_rbtadd(**file_info_tree, *file_info,
-//    int (*cmp)(t_rbtree *elem1, t_rbtree *elem2))
-//
-
-
-
-//    t_rbtree		*ft_rbtnew(void const *content, size_t content_size)
-//
-//
-//    void		ft_rbtadd(t_rbtree **root, t_rbtree *new,
-//                          int (*cmp)(t_rbtree *elem1, t_rbtree *elem2))
-
-
-
-
-/* Здесь происходит запись в лист
- *
- *
-    t_list	*file_details; // Do I need to initialize it to NULL?
-    t_list	*f_info;
-
-    f_info = ft_lstnew(&file_info, sizeof(t_info));
-    if (f_info == NULL)
-        free_list(file_details);
-    ft_listadd_to_end(&file_details, f_info);
-
-   */
 
 //	printf("chmod: %o\n", file_info.chmod_int);
 //
@@ -159,7 +126,52 @@ int define_file_type(struct stat *buf, t_info *file_info)
     return (0);
 }
 
-    int writing_file_data(char *d_name, char *str)
+int rbt_insertion_func(t_info *file_info, int result)
+{
+    int cmp;
+
+    if ((result >> 23) & 1)
+        cmp = &ft_ctime_cmp;
+    if ((result >> 6) & 1)
+        cmp = &file_size_cmp;
+    else
+        cmp = &ft_strcmp;
+
+    t_rbtree *file_info_tree;
+
+    if (file_info_tree == NULL)
+        file_info_tree = ft_rbtnew((void *)&file_info, sizeof(t_info));
+    else
+        file_info_tree = ft_rbtadd(**file_info_tree, *file_info,
+    int (*cmp)(t_rbtree *elem1, t_rbtree *elem2))
+    /* Здесь происходит запись в лист
+     *
+    t_list	*file_details; // Do I need to initialize it to NULL?
+    t_list	*f_info;
+
+    f_info = ft_lstnew(&file_info, sizeof(t_info));
+    if (f_info == NULL)
+    free_list(file_details);
+    ft_listadd_to_end(&file_details, f_info);
+    */
+
+    return (0);
+
+}
+int ft_ctime_cmp(t_info *file_info)
+{
+    return (file_info->change_time
+
+}
+
+
+int file_size_cmp(t_info *file_info)
+{
+    file_info->change_time
+}
+
+
+    int writing_file_data_dir(char *d_name, char *str, int result)
     {
         int a;
         struct stat buf;
@@ -192,6 +204,81 @@ int define_file_type(struct stat *buf, t_info *file_info)
         str = "abc";
         return (0);
     }
+
+
+int writing_file_data_long(char *str, int result) {
+
+    int a;
+    struct stat buf;
+    char *d_name_path;
+    struct passwd *pwd = NULL;
+    struct group *group_name;
+    errno = 0;
+
+//    d_name_path = ft_strjoin(str, "/");
+    d_name_path = ft_strjoin("./", str);
+    a = lstat(d_name_path, &buf);
+    printf("возврат lstat %d\n", a);
+    t_info file_info;
+    file_info.name = str;
+    file_info.path = (char *)malloc(sizeof(char *) * ft_strlen((file_info.name) + 3));
+    file_info.path = ft_strjoin("./", file_info.name); // но это только для файлов?
+    file_info.size = buf.st_size;
+    file_info.access_time = (unsigned long long) &buf.st_atimespec;
+    file_info.mod_time = (unsigned long long) &buf.st_mtimespec;
+    file_info.change_time = (unsigned long long) &buf.st_ctimespec;
+    define_file_type(&buf, &file_info);
+    file_info.serial_number = buf.st_ino;
+    pwd = getpwuid(buf.st_uid); // здесь записывается uid
+    if (pwd == NULL)
+        perror("getpwuid");
+    else
+        file_info.uid = pwd->pw_name;
+
+    group_name = getgrgid(buf.st_gid); // здесь grid
+    if (group_name == NULL)
+        perror("getgrgid");
+    else
+        file_info.gid = group_name->gr_name;
+    file_info.chmod_int = buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO); // надо ли перевести его в восьмеричную систему?
+    writing_chmod(&buf, &file_info); // здесь происходит запись в chmod_char
+    return (0);
+}
+
+int writing_file_data(char *str, int result)
+{
+    int a;
+    struct stat buf;
+    struct passwd *pwd = NULL;
+    struct group *group_name;
+    a = lstat(str, &buf);
+    printf("возврат lstat %d\n", a);
+    t_info file_info;
+    file_info.name = str;
+    file_info.path = (char *)malloc(sizeof(char *) * ft_strlen((file_info.name) + 3));
+    file_info.path = ft_strjoin("./", file_info.name); // но это только для файлов?
+    file_info.size = buf.st_size;
+    /* че из этого мне оставить?? */
+
+    file_info.access_time = (unsigned long long) &buf.st_atimespec;
+    file_info.mod_time = (unsigned long long) &buf.st_mtimespec;
+    file_info.change_time = (unsigned long long) &buf.st_ctimespec;
+    define_file_type(&buf, &file_info);
+    file_info.serial_number = buf.st_ino;
+    pwd = getpwuid(buf.st_uid); // здесь записывается uid
+    if (pwd == NULL)
+        perror("getpwuid");
+    else
+        file_info.uid = pwd->pw_name;
+    group_name = getgrgid(buf.st_gid); // здесь grid
+    if (group_name == NULL)
+        perror("getgrgid");
+    else
+        file_info.gid = group_name->gr_name;
+    str = "abc";
+    return (0);
+}
+
 
 //int name_cmp(t_rbtree *elem1, t_rbtree *elem2)
 //{
