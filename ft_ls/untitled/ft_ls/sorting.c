@@ -2,6 +2,7 @@
 // Created by Christop Reek on 2019-04-08.
 //
 
+#include <mach/mach_types.h>
 #include "ft_ls.h"
 
 void writing_chmod(struct stat *buf, t_info *file_info)
@@ -43,7 +44,7 @@ int define_file_type(struct stat *buf, t_info *file_info)
     if (S_ISFIFO(buf->st_mode))
         file_info->filetype = TYPE_FIFO;
     if (S_ISLNK(buf->st_mode))
-        file_info->filetype = TYPE_LNK;§
+        file_info->filetype = TYPE_LNK;
     if (S_ISSOCK(buf->st_mode))
         file_info->filetype = TYPE_SOCK;
     return (0);
@@ -101,7 +102,7 @@ int define_file_type(struct stat *buf, t_info *file_info)
 //    file_info.gid = ft_strdup(getgrgid(buf.st_gid)->gr_name);
     file_info.chmod_int = buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO); // надо ли перевести его в восьмеричную систему?
     writing_chmod(&buf, &file_info); // здесь происходит запись в chmod_char
-    rbt_insertion_func(file_info, result);
+    rbt_insertion_func(&file_info, result);
 //    file_info.links = buf.st_nlink;
 
 //	file_info.symb_link = getting_symlink(&file_info); // здесь invalid argument, нужен full_path
@@ -128,22 +129,22 @@ int define_file_type(struct stat *buf, t_info *file_info)
 
 int rbt_insertion_func(t_info *file_info, int result)
 {
-    int cmp;
+    int (*cmp)(t_rbtree *elem1, t_rbtree *elem2);
 
     if ((result >> 23) & 1)
         cmp = &ft_ctime_cmp;
     if ((result >> 6) & 1)
         cmp = &file_size_cmp;
     else
-        cmp = &ft_strcmp;
+        cmp = &ft_strcmp_rbt;
 
     t_rbtree *file_info_tree;
 
     if (file_info_tree == NULL)
         file_info_tree = ft_rbtnew((void *)&file_info, sizeof(t_info));
     else
-        file_info_tree = ft_rbtadd(**file_info_tree, *file_info,
-    int (*cmp)(t_rbtree *elem1, t_rbtree *elem2))
+        ft_rbtadd(&file_info_tree, &file_info, cmp);
+
     /* Здесь происходит запись в лист
      *
     t_list	*file_details; // Do I need to initialize it to NULL?
@@ -158,18 +159,25 @@ int rbt_insertion_func(t_info *file_info, int result)
     return (0);
 
 }
-int ft_ctime_cmp(t_info *file_info)
+
+//(t_tetr *)tetris->content
+//((T_tetr *)tetr->content)->height
+
+int ft_ctime_cmp(t_rbtree *elem1, t_rbtree *elem2)
 {
-    return (file_info->change_time
+    return (int)(((t_info *)elem1->content)->change_time - ((t_info *)elem2->content)->change_time);
 
 }
 
-
-int file_size_cmp(t_info *file_info)
+int file_size_cmp(t_rbtree *elem1, t_rbtree *elem2)
 {
-    file_info->change_time
+    return (int)(((t_info *)elem1->content)->size - ((t_info *)elem2->content)->size);
 }
 
+int ft_strcmp_rbt(t_rbtree *elem1, t_rbtree *elem2)
+{
+    return (int)(ft_strcmp(((t_info *)elem1->content)->name, ((t_info *)elem2->content)->name));
+}
 
     int writing_file_data_dir(char *d_name, char *str, int result)
     {

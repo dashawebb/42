@@ -111,7 +111,7 @@ int writing_file_data_long(char *str, int result);
 
 int writing_file_data(char *str, int result);
 
-int rbt_insertion_func(t_info file_info, int result);
+int rbt_insertion_func(t_info *file_info, int result);
 
 t_list	*ft_lstnew(void const *content, size_t content_size);
 
@@ -119,11 +119,13 @@ void	ft_listadd_to_end(t_list **begin_list, t_list *new);
 
 void	free_list(t_list *head);
 
-int ft_ctime_cmp(t_info *file_info);
+int file_size_cmp(t_rbtree *elem1, t_rbtree *elem2);
 
-int file_size_cmp(t_info *file_info);
+int ft_ctime_cmp(t_rbtree *elem1, t_rbtree *elem2);
 
-int sort_lexic_rev(char *name_1, char *name_2);
+int sort_lexic_rev(char *name_1, char *name_2); // это вообще не нужно
+
+int ft_strcmp_rbt(t_rbtree *elem1, t_rbtree *elem2);
 
 int printing(int options, t_list *file_details);
 
@@ -149,5 +151,12 @@ t_rbtree		*ft_rbtroot(t_rbtree *elem);
 
 void			ft_rbtforeach(t_rbtree *root,
                               void (*f)(t_rbtree *elem), int order);
+
+static void ft_rbtforeach_pre(t_rbtree *root, void (*f)(t_rbtree *elem))
+
+static void ft_rbtforeach_in(t_rbtree *root, void (*f)(t_rbtree *elem));
+
+static void ft_rbtforeach_post(t_rbtree *root, void (*f)(t_rbtree *elem));
+
 
 #endif
