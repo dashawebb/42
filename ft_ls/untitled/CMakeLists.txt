@@ -10,7 +10,7 @@ include_directories(libft/includes)
 add_library(libft.a SHARED IMPORTED)
 set_target_properties(libft.a PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libft/libft.a)
 
-add_executable(untitled main.c ft_ls/ft_ls.c ft_ls/ft_ls.h ft_ls/sorting.c ft_ls/list_functions.c ft_ls/output.c ft_ls/rbt_add.c ft_ls/ft_rbtnew.c ft_ls/ft_rbtclr.c ft_ls/ft_rbtroot.c)
+add_executable(untitled main.c ft_ls/ft_rbtforeach.c ft_ls/ft_ls.c ft_ls/ft_ls.h ft_ls/sorting.c ft_ls/list_functions.c ft_ls/output.c ft_ls/rbt_add.c ft_ls/ft_rbtnew.c ft_ls/ft_rbtclr.c ft_ls/ft_rbtroot.c ft_ls/ft_rbtforeach.c)
 
 target_link_libraries(untitled libft.a)
 

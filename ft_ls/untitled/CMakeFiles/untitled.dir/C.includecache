@@ -44,6 +44,12 @@ errno.h
 ft_ls.h
 /Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
 
+/Users/creek/CLionProjects/untitled/ft_ls/ft_rbtforeach.c
+libft.h
+/Users/creek/CLionProjects/untitled/ft_ls/libft.h
+ft_ls.h
+/Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
+
 /Users/creek/CLionProjects/untitled/ft_ls/ft_rbtnew.c
 ft_ls.h
 /Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
@@ -79,6 +85,8 @@ ft_ls.h
 /Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
 
 /Users/creek/CLionProjects/untitled/ft_ls/sorting.c
+mach/mach_types.h
+-
 ft_ls.h
 /Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
 
@@ -88,5 +96,19 @@ sys/attr.h
 ft_ls/ft_ls.h
 /Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
 errno.h
+-
+
+libft/includes/libft.h
+string.h
+-
+stdlib.h
+-
+unistd.h
+-
+stddef.h
+-
+ctype.h
+-
+limits.h
 -
 

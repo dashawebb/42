@@ -6,12 +6,12 @@
 #    By: creek <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/30 19:39:19 by creek             #+#    #+#              #
-#    Updated: 2019/05/11 15:08:38 by creek            ###   ########.fr        #
+#    Updated: 2019/05/13 22:02:15 by creek            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = ft_ls
-SRC = ft_ls.c ft_rbtnew.c output.c sorting.c ft_rbtclr.c ft_rbtroot.c main.c rbt_add.c
+SRC = ft_ls.c ft_rbtnew.c output.c sorting.c ft_rbtclr.c ft_rbtroot.c main.c rbt_add.c ft_rbtforeach.c
 OBJ   = $(SRC:.c=.o)
 LIB_DIR  = libft/
 LIBFT   = -L./libft -lft
@@ -27,7 +27,7 @@ $(LIBFT):
 	make -C $(LIB_DIR)
 
 %.o: %.c
-	gcc $(FLAGS) -c $^ -o $@
+	gcc $(FLAGS) $(LIB_INCS) -c $^ -o $@
 
 clean:
 	make -C libft/ clean

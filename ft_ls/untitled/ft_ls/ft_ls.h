@@ -103,15 +103,15 @@ void writing_chmod(struct stat *buf, t_info *file_info);
 
 int define_file_type(struct stat *buf, t_info *file_info);
 
-int writing_file_data_long_dir(char *d_name, char *str, int result);
+int writing_file_data_long_dir(char *d_name, char *str, int result, t_rbtree *file_info_tree);
 
-int writing_file_data_dir(char *d_name, char *str, int result);
+int writing_file_data_dir(char *d_name, int result, t_rbtree *file_info_tree);
 
-int writing_file_data_long(char *str, int result);
+int writing_file_data_long(char *str, int result, t_rbtree *file_info_tree);
 
-int writing_file_data(char *str, int result);
+int writing_file_data(char *str, int result, t_rbtree *file_info_tree);
 
-int rbt_insertion_func(t_info *file_info, int result);
+int rbt_insertion_func(t_info *file_info, int result, t_rbtree *file_info_tree);
 
 t_list	*ft_lstnew(void const *content, size_t content_size);
 
@@ -126,6 +126,8 @@ int ft_ctime_cmp(t_rbtree *elem1, t_rbtree *elem2);
 int sort_lexic_rev(char *name_1, char *name_2); // это вообще не нужно
 
 int ft_strcmp_rbt(t_rbtree *elem1, t_rbtree *elem2);
+
+int some_printing_func(t_rbtree *file_info_tree);
 
 int printing(int options, t_list *file_details);
 
@@ -149,14 +151,6 @@ size_t			ft_rbtsize(t_rbtree *root);
 
 t_rbtree		*ft_rbtroot(t_rbtree *elem);
 
-void			ft_rbtforeach(t_rbtree *root,
-                              void (*f)(t_rbtree *elem), int order);
-
-static void ft_rbtforeach_pre(t_rbtree *root, void (*f)(t_rbtree *elem))
-
-static void ft_rbtforeach_in(t_rbtree *root, void (*f)(t_rbtree *elem));
-
-static void ft_rbtforeach_post(t_rbtree *root, void (*f)(t_rbtree *elem));
-
+void        ft_rbtforeach(t_rbtree *root, void (*f)(t_rbtree *elem), int order);
 
 #endif

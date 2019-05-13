@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/creek/CLionProjects/untitled/ft_ls/ft_ls.c
-ft_ls.h
-/Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
-
 /Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
 stdio.h
 -
@@ -40,18 +36,6 @@ libft/includes/libft.h
 errno.h
 -
 
-/Users/creek/CLionProjects/untitled/ft_ls/ft_rbtclr.c
-ft_ls.h
-/Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
-
-/Users/creek/CLionProjects/untitled/ft_ls/ft_rbtnew.c
-ft_ls.h
-/Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
-
-/Users/creek/CLionProjects/untitled/ft_ls/ft_rbtroot.c
-ft_ls.h
-/Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
-
 /Users/creek/CLionProjects/untitled/ft_ls/libft/includes/libft.h
 string.h
 -
@@ -66,27 +50,9 @@ ctype.h
 limits.h
 -
 
-/Users/creek/CLionProjects/untitled/ft_ls/list_functions.c
-ft_ls.h
-/Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
-
-/Users/creek/CLionProjects/untitled/ft_ls/output.c
-ft_ls.h
-/Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
-
-/Users/creek/CLionProjects/untitled/ft_ls/rbt_add.c
-ft_ls.h
-/Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
-
 /Users/creek/CLionProjects/untitled/ft_ls/sorting.c
+mach/mach_types.h
+-
 ft_ls.h
 /Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
-
-/Users/creek/CLionProjects/untitled/main.c
-sys/attr.h
--
-ft_ls/ft_ls.h
-/Users/creek/CLionProjects/untitled/ft_ls/ft_ls.h
-errno.h
--
 

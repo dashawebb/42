@@ -85,6 +85,9 @@ int check_file(char *str, int result)
     char *d_name;
     struct dirent *ddir;
     struct stat buf;
+    t_rbtree *file_info_tree; // должен создаваться где-то еще...
+
+    file_info_tree = NULL;
     int i = 0;
     if (ft_strlen(str) > 255)
     {
@@ -107,10 +110,10 @@ int check_file(char *str, int result)
             {
                 printf("%d\n", i++);
                 printf("here's something long\n");
-                writing_file_data_long_dir(d_name, str, result);
+                writing_file_data_long_dir(d_name, str, result, file_info_tree);
             }
             else
-                writing_file_data_dir(d_name, str, result);
+                writing_file_data_dir(d_name, result, file_info_tree);
             write(1, "\n", 1);
         }
         closedir (dir);
@@ -126,12 +129,12 @@ int check_file(char *str, int result)
         else if ((result >> 16) & 1)
         {
             printf("Нашел файлик в формате long!: %s\n", str);
-            writing_file_data_long(str, result);
+            writing_file_data_long(str, result, file_info_tree);
         }
         else
         {
             printf("Нашел файлик!: %s\n", str);
-            writing_file_data(str, result);
+            writing_file_data(str, result, file_info_tree);
         }
     }
     return (0);

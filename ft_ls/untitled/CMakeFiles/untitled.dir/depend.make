@@ -9,6 +9,11 @@ CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.o: ft_ls/ft_ls.h
 CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.o: ft_ls/ft_rbtclr.c
 CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.o: ft_ls/libft/includes/libft.h
 
+CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.o: ft_ls/ft_ls.h
+CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.o: ft_ls/ft_rbtforeach.c
+CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.o: ft_ls/libft/includes/libft.h
+CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.o: libft/includes/libft.h
+
 CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.o: ft_ls/ft_ls.h
 CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.o: ft_ls/ft_rbtnew.c
 CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.o: ft_ls/libft/includes/libft.h

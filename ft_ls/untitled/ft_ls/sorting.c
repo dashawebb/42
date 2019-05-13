@@ -50,20 +50,20 @@ int define_file_type(struct stat *buf, t_info *file_info)
     return (0);
 }
 
-    int writing_file_data_long_dir(char *d_name, char *str, int result) {
+    int writing_file_data_long_dir(char *d_name, char *str, int result, t_rbtree *file_info_tree) {
 
     int a;
     struct stat buf;
     char *d_name_path;
     struct passwd *pwd = NULL;
     struct group *group_name;
-    //t_info attr;
+
+        //t_info attr;
 
     //char *time;
 
 //    printf("%s\n", ent->d_name);
     errno = 0;
-
     d_name_path = ft_strjoin(str, "/");
     d_name_path = ft_strjoin(d_name_path, d_name);
     a = lstat(d_name_path, &buf);
@@ -102,7 +102,7 @@ int define_file_type(struct stat *buf, t_info *file_info)
 //    file_info.gid = ft_strdup(getgrgid(buf.st_gid)->gr_name);
     file_info.chmod_int = buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO); // надо ли перевести его в восьмеричную систему?
     writing_chmod(&buf, &file_info); // здесь происходит запись в chmod_char
-    rbt_insertion_func(&file_info, result);
+    rbt_insertion_func(&file_info, result, file_info_tree);
 //    file_info.links = buf.st_nlink;
 
 //	file_info.symb_link = getting_symlink(&file_info); // здесь invalid argument, нужен full_path
@@ -127,9 +127,22 @@ int define_file_type(struct stat *buf, t_info *file_info)
     return (0);
 }
 
-int rbt_insertion_func(t_info *file_info, int result)
+void ft_putstr_rbt(t_rbtree *elem)
+{
+    if (((t_info *)elem->content)->name == NULL)
+        return ;
+    while (*(((t_info *)elem->content)->name) != '\0')
+    {
+//        printf("%s ya ebal\n", (((t_info *)elem->content)->name)++);
+        ft_putchar(*((t_info *)elem->content)->name);
+        (((t_info *)elem->content)->name)++;
+    }
+}
+
+int rbt_insertion_func(t_info *file_info, int result, t_rbtree *file_info_tree)
 {
     int (*cmp)(t_rbtree *elem1, t_rbtree *elem2);
+    void (*f)(t_rbtree *elem);
 
     if ((result >> 23) & 1)
         cmp = &ft_ctime_cmp;
@@ -138,12 +151,20 @@ int rbt_insertion_func(t_info *file_info, int result)
     else
         cmp = &ft_strcmp_rbt;
 
-    t_rbtree *file_info_tree;
-
     if (file_info_tree == NULL)
-        file_info_tree = ft_rbtnew((void *)&file_info, sizeof(t_info));
+    {
+        printf("Это пустое дерево\n");
+        file_info_tree = ft_rbtnew((void *)file_info, sizeof(t_info));
+    }
     else
-        ft_rbtadd(&file_info_tree, &file_info, cmp);
+    {
+        printf("О! А это непустое дерево\n");
+        ft_rbtadd(&file_info_tree, (t_rbtree *)&file_info, cmp);
+    }
+    printf("Закинул\n");
+    f = &ft_putstr_rbt;
+//    some_printing_func(file_info_tree);
+    ft_rbtforeach(file_info_tree, f, PREFIX);
 
     /* Здесь происходит запись в лист
      *
@@ -179,7 +200,7 @@ int ft_strcmp_rbt(t_rbtree *elem1, t_rbtree *elem2)
     return (int)(ft_strcmp(((t_info *)elem1->content)->name, ((t_info *)elem2->content)->name));
 }
 
-    int writing_file_data_dir(char *d_name, char *str, int result)
+    int writing_file_data_dir(char *d_name, int result, t_rbtree *file_info_tree)
     {
         int a;
         struct stat buf;
@@ -209,12 +230,12 @@ int ft_strcmp_rbt(t_rbtree *elem1, t_rbtree *elem2)
             perror("getgrgid");
         else
             file_info.gid = group_name->gr_name;
-        str = "abc";
+        rbt_insertion_func(&file_info, result, file_info_tree);
         return (0);
     }
 
 
-int writing_file_data_long(char *str, int result) {
+int writing_file_data_long(char *str, int result, t_rbtree *file_info_tree) {
 
     int a;
     struct stat buf;
@@ -250,10 +271,11 @@ int writing_file_data_long(char *str, int result) {
         file_info.gid = group_name->gr_name;
     file_info.chmod_int = buf.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO); // надо ли перевести его в восьмеричную систему?
     writing_chmod(&buf, &file_info); // здесь происходит запись в chmod_char
+    rbt_insertion_func(&file_info, result, file_info_tree);
     return (0);
 }
 
-int writing_file_data(char *str, int result)
+int writing_file_data(char *str, int result, t_rbtree *file_info_tree)
 {
     int a;
     struct stat buf;
@@ -283,7 +305,7 @@ int writing_file_data(char *str, int result)
         perror("getgrgid");
     else
         file_info.gid = group_name->gr_name;
-    str = "abc";
+    rbt_insertion_func(&file_info, result, file_info_tree);
     return (0);
 }
 

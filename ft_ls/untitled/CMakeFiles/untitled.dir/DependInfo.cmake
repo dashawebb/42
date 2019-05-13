@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/creek/CLionProjects/untitled/ft_ls/ft_ls.c" "/Users/creek/CLionProjects/untitled/CMakeFiles/untitled.dir/ft_ls/ft_ls.c.o"
   "/Users/creek/CLionProjects/untitled/ft_ls/ft_rbtclr.c" "/Users/creek/CLionProjects/untitled/CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.o"
+  "/Users/creek/CLionProjects/untitled/ft_ls/ft_rbtforeach.c" "/Users/creek/CLionProjects/untitled/CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.o"
   "/Users/creek/CLionProjects/untitled/ft_ls/ft_rbtnew.c" "/Users/creek/CLionProjects/untitled/CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.o"
   "/Users/creek/CLionProjects/untitled/ft_ls/ft_rbtroot.c" "/Users/creek/CLionProjects/untitled/CMakeFiles/untitled.dir/ft_ls/ft_rbtroot.c.o"
   "/Users/creek/CLionProjects/untitled/ft_ls/list_functions.c" "/Users/creek/CLionProjects/untitled/CMakeFiles/untitled.dir/ft_ls/list_functions.c.o"

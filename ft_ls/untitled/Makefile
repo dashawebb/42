@@ -177,6 +177,33 @@ ft_ls/ft_rbtclr.c.s:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.s
 .PHONY : ft_ls/ft_rbtclr.c.s
 
+ft_ls/ft_rbtforeach.o: ft_ls/ft_rbtforeach.c.o
+
+.PHONY : ft_ls/ft_rbtforeach.o
+
+# target to build an object file
+ft_ls/ft_rbtforeach.c.o:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.o
+.PHONY : ft_ls/ft_rbtforeach.c.o
+
+ft_ls/ft_rbtforeach.i: ft_ls/ft_rbtforeach.c.i
+
+.PHONY : ft_ls/ft_rbtforeach.i
+
+# target to preprocess a source file
+ft_ls/ft_rbtforeach.c.i:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.i
+.PHONY : ft_ls/ft_rbtforeach.c.i
+
+ft_ls/ft_rbtforeach.s: ft_ls/ft_rbtforeach.c.s
+
+.PHONY : ft_ls/ft_rbtforeach.s
+
+# target to generate assembly for a file
+ft_ls/ft_rbtforeach.c.s:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.s
+.PHONY : ft_ls/ft_rbtforeach.c.s
+
 ft_ls/ft_rbtnew.o: ft_ls/ft_rbtnew.c.o
 
 .PHONY : ft_ls/ft_rbtnew.o
@@ -381,6 +408,9 @@ help:
 	@echo "... ft_ls/ft_rbtclr.o"
 	@echo "... ft_ls/ft_rbtclr.i"
 	@echo "... ft_ls/ft_rbtclr.s"
+	@echo "... ft_ls/ft_rbtforeach.o"
+	@echo "... ft_ls/ft_rbtforeach.i"
+	@echo "... ft_ls/ft_rbtforeach.s"
 	@echo "... ft_ls/ft_rbtnew.o"
 	@echo "... ft_ls/ft_rbtnew.i"
 	@echo "... ft_ls/ft_rbtnew.s"

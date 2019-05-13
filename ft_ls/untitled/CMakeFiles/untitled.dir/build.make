@@ -70,9 +70,22 @@ CMakeFiles/untitled.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/untitled.dir/main.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/creek/CLionProjects/untitled/main.c -o CMakeFiles/untitled.dir/main.c.s
 
+CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.o: CMakeFiles/untitled.dir/flags.make
+CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.o: ft_ls/ft_rbtforeach.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.o   -c /Users/creek/CLionProjects/untitled/ft_ls/ft_rbtforeach.c
+
+CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/creek/CLionProjects/untitled/ft_ls/ft_rbtforeach.c > CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.i
+
+CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/creek/CLionProjects/untitled/ft_ls/ft_rbtforeach.c -o CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.s
+
 CMakeFiles/untitled.dir/ft_ls/ft_ls.c.o: CMakeFiles/untitled.dir/flags.make
 CMakeFiles/untitled.dir/ft_ls/ft_ls.c.o: ft_ls/ft_ls.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/untitled.dir/ft_ls/ft_ls.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/untitled.dir/ft_ls/ft_ls.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/untitled.dir/ft_ls/ft_ls.c.o   -c /Users/creek/CLionProjects/untitled/ft_ls/ft_ls.c
 
 CMakeFiles/untitled.dir/ft_ls/ft_ls.c.i: cmake_force
@@ -85,7 +98,7 @@ CMakeFiles/untitled.dir/ft_ls/ft_ls.c.s: cmake_force
 
 CMakeFiles/untitled.dir/ft_ls/sorting.c.o: CMakeFiles/untitled.dir/flags.make
 CMakeFiles/untitled.dir/ft_ls/sorting.c.o: ft_ls/sorting.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/untitled.dir/ft_ls/sorting.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/untitled.dir/ft_ls/sorting.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/untitled.dir/ft_ls/sorting.c.o   -c /Users/creek/CLionProjects/untitled/ft_ls/sorting.c
 
 CMakeFiles/untitled.dir/ft_ls/sorting.c.i: cmake_force
@@ -98,7 +111,7 @@ CMakeFiles/untitled.dir/ft_ls/sorting.c.s: cmake_force
 
 CMakeFiles/untitled.dir/ft_ls/list_functions.c.o: CMakeFiles/untitled.dir/flags.make
 CMakeFiles/untitled.dir/ft_ls/list_functions.c.o: ft_ls/list_functions.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/untitled.dir/ft_ls/list_functions.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/untitled.dir/ft_ls/list_functions.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/untitled.dir/ft_ls/list_functions.c.o   -c /Users/creek/CLionProjects/untitled/ft_ls/list_functions.c
 
 CMakeFiles/untitled.dir/ft_ls/list_functions.c.i: cmake_force
@@ -111,7 +124,7 @@ CMakeFiles/untitled.dir/ft_ls/list_functions.c.s: cmake_force
 
 CMakeFiles/untitled.dir/ft_ls/output.c.o: CMakeFiles/untitled.dir/flags.make
 CMakeFiles/untitled.dir/ft_ls/output.c.o: ft_ls/output.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/untitled.dir/ft_ls/output.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/untitled.dir/ft_ls/output.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/untitled.dir/ft_ls/output.c.o   -c /Users/creek/CLionProjects/untitled/ft_ls/output.c
 
 CMakeFiles/untitled.dir/ft_ls/output.c.i: cmake_force
@@ -124,7 +137,7 @@ CMakeFiles/untitled.dir/ft_ls/output.c.s: cmake_force
 
 CMakeFiles/untitled.dir/ft_ls/rbt_add.c.o: CMakeFiles/untitled.dir/flags.make
 CMakeFiles/untitled.dir/ft_ls/rbt_add.c.o: ft_ls/rbt_add.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/untitled.dir/ft_ls/rbt_add.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/untitled.dir/ft_ls/rbt_add.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/untitled.dir/ft_ls/rbt_add.c.o   -c /Users/creek/CLionProjects/untitled/ft_ls/rbt_add.c
 
 CMakeFiles/untitled.dir/ft_ls/rbt_add.c.i: cmake_force
@@ -137,7 +150,7 @@ CMakeFiles/untitled.dir/ft_ls/rbt_add.c.s: cmake_force
 
 CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.o: CMakeFiles/untitled.dir/flags.make
 CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.o: ft_ls/ft_rbtnew.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.o   -c /Users/creek/CLionProjects/untitled/ft_ls/ft_rbtnew.c
 
 CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.i: cmake_force
@@ -150,7 +163,7 @@ CMakeFiles/untitled.dir/ft_ls/ft_rbtnew.c.s: cmake_force
 
 CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.o: CMakeFiles/untitled.dir/flags.make
 CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.o: ft_ls/ft_rbtclr.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.o   -c /Users/creek/CLionProjects/untitled/ft_ls/ft_rbtclr.c
 
 CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.i: cmake_force
@@ -163,7 +176,7 @@ CMakeFiles/untitled.dir/ft_ls/ft_rbtclr.c.s: cmake_force
 
 CMakeFiles/untitled.dir/ft_ls/ft_rbtroot.c.o: CMakeFiles/untitled.dir/flags.make
 CMakeFiles/untitled.dir/ft_ls/ft_rbtroot.c.o: ft_ls/ft_rbtroot.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/untitled.dir/ft_ls/ft_rbtroot.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/untitled.dir/ft_ls/ft_rbtroot.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/untitled.dir/ft_ls/ft_rbtroot.c.o   -c /Users/creek/CLionProjects/untitled/ft_ls/ft_rbtroot.c
 
 CMakeFiles/untitled.dir/ft_ls/ft_rbtroot.c.i: cmake_force
@@ -177,6 +190,7 @@ CMakeFiles/untitled.dir/ft_ls/ft_rbtroot.c.s: cmake_force
 # Object files for target untitled
 untitled_OBJECTS = \
 "CMakeFiles/untitled.dir/main.c.o" \
+"CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.o" \
 "CMakeFiles/untitled.dir/ft_ls/ft_ls.c.o" \
 "CMakeFiles/untitled.dir/ft_ls/sorting.c.o" \
 "CMakeFiles/untitled.dir/ft_ls/list_functions.c.o" \
@@ -190,6 +204,7 @@ untitled_OBJECTS = \
 untitled_EXTERNAL_OBJECTS =
 
 untitled: CMakeFiles/untitled.dir/main.c.o
+untitled: CMakeFiles/untitled.dir/ft_ls/ft_rbtforeach.c.o
 untitled: CMakeFiles/untitled.dir/ft_ls/ft_ls.c.o
 untitled: CMakeFiles/untitled.dir/ft_ls/sorting.c.o
 untitled: CMakeFiles/untitled.dir/ft_ls/list_functions.c.o
@@ -201,7 +216,7 @@ untitled: CMakeFiles/untitled.dir/ft_ls/ft_rbtroot.c.o
 untitled: CMakeFiles/untitled.dir/build.make
 untitled: libft/libft.a
 untitled: CMakeFiles/untitled.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking C executable untitled"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/creek/CLionProjects/untitled/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking C executable untitled"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/untitled.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
