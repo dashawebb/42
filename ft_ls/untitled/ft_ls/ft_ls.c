@@ -85,7 +85,9 @@ int check_file(char *str, int result)
     char *d_name;
     struct dirent *ddir;
     struct stat buf;
-    t_rbtree *file_info_tree; // должен создаваться где-то еще...
+    int b = 0;
+//    t_rbtree *file_info_tree; // должен создаваться где-то еще...
+    t_rbtree *file_info_tree = NULL;
 
     file_info_tree = NULL;
     int i = 0;
@@ -98,22 +100,33 @@ int check_file(char *str, int result)
     if ((dir = opendir (str)) != NULL)
     {
         /* print all the files and directories within directory */
-        while ((ddir = readdir (dir)) != NULL)
+        while ((ddir = readdir (dir)) != NULL && b++ < 1)
         {
             d_name = ft_strdup(ddir->d_name);
                 //(d_name = ft_strdup(readdir (dir)->d_name)) != NULL)
                  // в этом цикле очень дохуя вертится
 //            printf ("file or dir: \n"); // тут надо замаллочить под структуру, нужно только ent -> d_name
 //            ft_putstr(ent->d_name); // ent -> d_name содержит имена всех файлов и папок
-            printf ("\n");
             if ((result >> 16) & 1) // здесь для формата long
             {
                 printf("%d\n", i++);
                 printf("here's something long\n");
-                writing_file_data_long_dir(d_name, str, result, file_info_tree);
+                writing_file_data_long_dir(d_name, str, result, &file_info_tree);
+//                void (*f)(t_rbtree *elem);
+////
+////                f = &ft_putstr_rbt;
+//                f = &ft_rbt_putnbr;
+//                printf("А вот вышел из функции и выведу дерево\n");
+//                ft_rbtforeach(file_info_tree, f, PREFIX);
+//
+//                printf("\nВывел\n");
             }
             else
-                writing_file_data_dir(d_name, result, file_info_tree);
+            {
+                printf("а вот что-то недлинное\n");
+                writing_file_data_dir(d_name, str, result, &file_info_tree);
+
+            }
             write(1, "\n", 1);
         }
         closedir (dir);
@@ -129,12 +142,12 @@ int check_file(char *str, int result)
         else if ((result >> 16) & 1)
         {
             printf("Нашел файлик в формате long!: %s\n", str);
-            writing_file_data_long(str, result, file_info_tree);
+            writing_file_data_long(str, result, &file_info_tree);
         }
         else
         {
             printf("Нашел файлик!: %s\n", str);
-            writing_file_data(str, result, file_info_tree);
+            writing_file_data(str, result, &file_info_tree);
         }
     }
     return (0);

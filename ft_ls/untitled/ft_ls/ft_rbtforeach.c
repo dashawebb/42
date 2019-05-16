@@ -37,8 +37,10 @@ static void ft_rbtforeach_post(t_rbtree *root, void (*f)(t_rbtree *elem))
 
 void        ft_rbtforeach(t_rbtree *root, void (*f)(t_rbtree *elem), int order)
 {
-    if (!root || !f)
-        return ;
+    if (!root || !f) {
+        printf("o nihuya %p   %p\n", root, f);
+        return;
+    }
     if (order == PREFIX)
     {
         ft_rbtforeach_pre(root, f);
