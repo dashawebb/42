@@ -28,6 +28,7 @@ void writing_chmod(struct stat *buf, t_info *file_info)
         file_info->chmod_char[j++] = ((file_info->chmod_int >> ((i * 3) + 1) & 1) ? 'w' : '-');
         file_info->chmod_char[j++] = ((file_info->chmod_int >> (i * 3) & 1) ? 'x' : '-');
     }
+    file_info->chmod_char[j] = '\0';
 }
 
 int define_file_type(struct stat *buf, t_info *file_info)
@@ -71,6 +72,10 @@ int define_file_type(struct stat *buf, t_info *file_info)
     file_info.access_time = (unsigned long long) &buf.st_atimespec;
     file_info.mod_time = (unsigned long long) &buf.st_mtimespec;
     file_info.change_time = (unsigned long long) &buf.st_ctimespec;
+    char *tmp_str = ctime((const time_t *)&buf.st_mtimespec);
+    ft_strchr(tmp_str, '\n');
+
+    file_info.mod_time_char
     define_file_type(&buf, &file_info);
     file_info.serial_number = buf.st_ino;
     pwd = getpwuid(buf.st_uid); // здесь записывается uid
@@ -100,11 +105,20 @@ int define_file_type(struct stat *buf, t_info *file_info)
 
 void ft_putstr_rbt(t_rbtree *elem)
 {
+    char *str;
     if (((t_info *)elem->content)->name == NULL)
         return ;
-    printf("Сейчас выведу элемент\n");
-    ft_putstr(((t_info *)elem->content)->name);
-    printf("\n");
+    printf("Сейчас выведу элемент\n"); // строку в итоа
+//    str = ft_strjoin(((t_info *)elem->content)->name, ft_itoa(((t_info *)elem->content)->size)); // переписать стрджойн с stdarg чтобы принимал дохуя
+//    ft_putstr(str);
+//    free(str);
+    printf("%s ", ((t_info *)elem->content)->chmod_char);
+    printf("%d ", ((t_info *)elem->content)->links);
+    printf("%s ", ((t_info *)elem->content)->uid);
+    printf("%s ", ((t_info *)elem->content)->gid);
+    printf("%zu ", ((t_info *)elem->content)->size);
+    printf("%s chto za pidor ", ((t_info *)elem->content)->mod_time_char);
+    printf("%s\n", ((t_info *)elem->content)->name);
 }
 
 void ft_rbt_putnbr(t_rbtree *elem)
@@ -127,40 +141,40 @@ int ft_intcmp(t_rbtree *elem1, t_rbtree *elem2)
 int rbt_insertion_func(t_info *file_info, int result, t_rbtree **file_info_tree)
 {
     int (*cmp)(t_rbtree *elem1, t_rbtree *elem2);
+    void (*f)(t_rbtree *elem);
+
+    f = &ft_putstr_rbt;
+    if ((result >> 23) & 1)
+    {
+        cmp = &ft_ctime_cmp;
+        printf("Спарсил флаг t\n");
+    }
+    else if ((result >> 6) & 1)
+    {
+        cmp = &file_size_cmp;
+        printf("Спарсил флаг S\n");
+    }
+    else
+    {
+        printf("Спарсил нихуя\n");
+        cmp = &ft_strcmp_rbt;
+    }
+//    int array[10] = {0, 2 , 5, 7, 4, 8, 9, 3, 1, 6};
+//    cmp = &ft_intcmp;
+//
+//    for (int i = 0; i < 10; i++)
+//    {
+//        ft_rbtadd(file_info_tree, ft_rbtnew((void *)&(array[i]), sizeof(int *)), cmp);
+//    }
 //    void (*f)(t_rbtree *elem);
 //
-//    f = &ft_putstr_rbt;
-//    if ((result >> 23) & 1)
-//    {
-//        cmp = &ft_ctime_cmp;
-//        printf("Спарсил флаг t\n");
-//    }
-//    else if ((result >> 6) & 1)
-//    {
-//        cmp = &file_size_cmp;
-//        printf("Спарсил флаг S\n");
-//    }
-//    else
-//    {
-//        printf("Спарсил нихуя\n");
-//        cmp = &ft_strcmp_rbt;
-//    }
-    int array[10] = {0, 2 , 5, 7, 4, 8, 9, 3, 1, 6};
-    cmp = &ft_intcmp;
+//    f = &ft_rbt_putnbr;
+    ft_rbtadd(file_info_tree, ft_rbtnew((void *)file_info, sizeof(t_info)), cmp);
+//    printf("А вот вышел из функции и выведу дерево\n");
+//    ft_rbtforeach(*file_info_tree, f, INFIX);
+//    printf("\nВывел\n");
 
-    for (int i = 0; i < 10; i++)
-    {
-        ft_rbtadd(file_info_tree, ft_rbtnew((void *)&(array[i]), sizeof(int *)), cmp);
-    }
-    void (*f)(t_rbtree *elem);
-//
-//                f = &ft_putstr_rbt;
-    f = &ft_rbt_putnbr;
-    printf("А вот вышел из функции и выведу дерево\n");
-    ft_rbtforeach(*file_info_tree, f, PREFIX);
-    printf("\nВывел\n");
 
-//    ft_rbtadd(file_info_tree, ft_rbtnew((void *)file_info, sizeof(t_info)), cmp);
     printf("Закинул\n");
     return (0);
 

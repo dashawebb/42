@@ -65,6 +65,7 @@ typedef struct s_info
 	unsigned long long access_time;
 	unsigned long long mod_time;
 	unsigned long long change_time;
+	char *mod_time_char;
 	int filetype; // как лучше хранить тип файла?
 	size_t serial_number;
 // как хранить uid and gid?

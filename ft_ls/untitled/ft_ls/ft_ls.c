@@ -85,7 +85,6 @@ int check_file(char *str, int result)
     char *d_name;
     struct dirent *ddir;
     struct stat buf;
-    int b = 0;
 //    t_rbtree *file_info_tree; // должен создаваться где-то еще...
     t_rbtree *file_info_tree = NULL;
 
@@ -100,7 +99,7 @@ int check_file(char *str, int result)
     if ((dir = opendir (str)) != NULL)
     {
         /* print all the files and directories within directory */
-        while ((ddir = readdir (dir)) != NULL && b++ < 1)
+        while ((ddir = readdir (dir)) != NULL)
         {
             d_name = ft_strdup(ddir->d_name);
                 //(d_name = ft_strdup(readdir (dir)->d_name)) != NULL)
@@ -112,14 +111,14 @@ int check_file(char *str, int result)
                 printf("%d\n", i++);
                 printf("here's something long\n");
                 writing_file_data_long_dir(d_name, str, result, &file_info_tree);
-//                void (*f)(t_rbtree *elem);
-////
-////                f = &ft_putstr_rbt;
-//                f = &ft_rbt_putnbr;
-//                printf("А вот вышел из функции и выведу дерево\n");
-//                ft_rbtforeach(file_info_tree, f, PREFIX);
+                void (*f)(t_rbtree *elem);
 //
-//                printf("\nВывел\n");
+                f = &ft_putstr_rbt;
+////                f = &ft_rbt_putnbr;
+                printf("А вот вышел из функции и выведу дерево\n");
+                ft_rbtforeach(file_info_tree, f, INFIX);
+
+                printf("\nВывел\n");
             }
             else
             {
