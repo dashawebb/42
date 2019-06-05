@@ -16,7 +16,7 @@ OBJ   = $(SRC:.c=.o)
 LIB_DIR  = libft/
 LIBFT   = -L./libft -lft
 LIB_INCS  = -I libft/includes
-#FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 

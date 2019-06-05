@@ -111,6 +111,7 @@ int check_file(char *str, int result)
                 printf("%d\n", i++);
                 printf("here's something long\n");
                 writing_file_data_long_dir(d_name, str, result, &file_info_tree);
+                str_elem_length(&file_info_tree);
                 void (*f)(t_rbtree *elem);
 //
                 f = &ft_putstr_rbt;

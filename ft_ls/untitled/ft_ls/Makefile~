@@ -6,7 +6,7 @@
 #    By: creek <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/30 19:39:19 by creek             #+#    #+#              #
-#    Updated: 2019/05/13 22:02:15 by creek            ###   ########.fr        #
+#    Updated: 2019/05/16 20:01:05 by creek            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,7 +16,7 @@ OBJ   = $(SRC:.c=.o)
 LIB_DIR  = libft/
 LIBFT   = -L./libft -lft
 LIB_INCS  = -I libft/includes
-FLAGS = -Wall -Werror -Wextra
+#FLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 

@@ -78,6 +78,16 @@ typedef struct s_info
 
 } t_info;
 
+typedef struct s_length
+{
+    int links;
+    int uid;
+    int gid;
+    int size;
+    int total_length;
+
+} t_length;
+
 enum	e_color
 {
     RB_BLACK = 0,
@@ -130,6 +140,10 @@ int ft_strcmp_rbt(t_rbtree *elem1, t_rbtree *elem2);
 
 void ft_putstr_rbt(t_rbtree *elem);
 
+void str_elem_length(t_rbtree **file_info_tree);
+
+void strlen_calc(t_rbtree *elem, t_length *str_length);
+
 void ft_rbt_putnbr(t_rbtree *elem);
 
 int some_printing_func(t_rbtree *file_info_tree);
@@ -157,5 +171,8 @@ size_t			ft_rbtsize(t_rbtree *root);
 t_rbtree		*ft_rbtroot(t_rbtree *elem);
 
 void        ft_rbtforeach(t_rbtree *root, void (*f)(t_rbtree *elem), int order);
+
+void        ft_rbtforeach_two(t_rbtree *root, t_length *str_length, void (*f)(t_rbtree *elem, t_length *str_length), int order);
+
 
 #endif

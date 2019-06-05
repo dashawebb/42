@@ -73,9 +73,10 @@ int define_file_type(struct stat *buf, t_info *file_info)
     file_info.mod_time = (unsigned long long) &buf.st_mtimespec;
     file_info.change_time = (unsigned long long) &buf.st_ctimespec;
     char *tmp_str = ctime((const time_t *)&buf.st_mtimespec);
-    ft_strchr(tmp_str, '\n');
+    int n = ft_strchr(tmp_str, '\n') - tmp_str;
 
-    file_info.mod_time_char
+    file_info.mod_time_char = tmp_str;
+    file_info.mod_time_char[n] = '\0'; // ?
     define_file_type(&buf, &file_info);
     file_info.serial_number = buf.st_ino;
     pwd = getpwuid(buf.st_uid); // здесь записывается uid
@@ -112,13 +113,65 @@ void ft_putstr_rbt(t_rbtree *elem)
 //    str = ft_strjoin(((t_info *)elem->content)->name, ft_itoa(((t_info *)elem->content)->size)); // переписать стрджойн с stdarg чтобы принимал дохуя
 //    ft_putstr(str);
 //    free(str);
+    str = malloc(sizeof(char) * 100); // избавиться от этого magic_number;
+
     printf("%s ", ((t_info *)elem->content)->chmod_char);
     printf("%d ", ((t_info *)elem->content)->links);
     printf("%s ", ((t_info *)elem->content)->uid);
     printf("%s ", ((t_info *)elem->content)->gid);
     printf("%zu ", ((t_info *)elem->content)->size);
-    printf("%s chto za pidor ", ((t_info *)elem->content)->mod_time_char);
+    printf("%s ", ((t_info *)elem->content)->mod_time_char);
     printf("%s\n", ((t_info *)elem->content)->name);
+}
+
+void str_elem_length(t_rbtree **file_info_tree)
+{
+    t_length str_length;
+
+    str_length.links = 0;
+    str_length.uid = 0;
+    str_length.gid = 0;
+    str_length.size = 0;
+
+    void (*f)(t_rbtree *elem, t_length *str_length);
+    f = &strlen_calc;
+
+    ft_rbtforeach_two(*file_info_tree, &str_length, f, INFIX);
+    printf("links: %d\n", str_length.links);
+    printf("uid: %d\n", str_length.uid);
+    printf("gid: %d\n", str_length.gid);
+    printf("size: %d\n", str_length.size);
+    printf("total length: %d\n", str_length.total_length);
+
+}
+
+void strlen_calc(t_rbtree *elem, t_length *str_length)
+{
+    int links = ft_strlen(ft_itoa(((t_info *)elem->content)->links));
+    int uid = ft_strlen(((t_info *)elem->content)->uid);
+    int gid = ft_strlen(((t_info *)elem->content)->gid);
+    int size = ft_strlen(ft_itoa(((t_info *)elem->content)->size));
+
+    if (links > str_length->links)
+        str_length->links = links;
+    if (uid > str_length->uid)
+        str_length->uid = uid;
+    if (gid > str_length->gid)
+        str_length->gid = gid;
+    if (size > str_length->size)
+        str_length->size = size;
+    str_length->total_length = str_length->links + str_length->uid + str_length->gid + str_length->size;
+}
+
+void str_concat()
+{
+//    char *str;
+//    str = malloc
+
+
+
+
+
 }
 
 void ft_rbt_putnbr(t_rbtree *elem)
