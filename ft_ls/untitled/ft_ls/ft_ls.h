@@ -85,6 +85,8 @@ typedef struct s_length
     int gid;
     int size;
     int total_length;
+    int elements;
+
 
 } t_length;
 
@@ -143,6 +145,8 @@ void ft_putstr_rbt(t_rbtree *elem);
 void str_elem_length(t_rbtree **file_info_tree);
 
 void strlen_calc(t_rbtree *elem, t_length *str_length);
+
+void str_concat(char *str, t_length *str_length);
 
 void ft_rbt_putnbr(t_rbtree *elem);
 

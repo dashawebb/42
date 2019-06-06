@@ -132,6 +132,7 @@ void str_elem_length(t_rbtree **file_info_tree)
     str_length.uid = 0;
     str_length.gid = 0;
     str_length.size = 0;
+    str_length.elements = 0;
 
     void (*f)(t_rbtree *elem, t_length *str_length);
     f = &strlen_calc;
@@ -142,6 +143,14 @@ void str_elem_length(t_rbtree **file_info_tree)
     printf("gid: %d\n", str_length.gid);
     printf("size: %d\n", str_length.size);
     printf("total length: %d\n", str_length.total_length);
+
+    char *str;
+    str = (char *)malloc(sizeof(char) * (str_length.elements * (str_length.size + 270)));
+    f = &str_concat(str, str_length);
+    ft_rbtforeach_two(*file_info_tree, &str_length, f, INFIX);
+    ft_putstr(str);
+    printf("закончил с выводом большой строки\n");
+
 
 }
 
@@ -161,15 +170,16 @@ void strlen_calc(t_rbtree *elem, t_length *str_length)
     if (size > str_length->size)
         str_length->size = size;
     str_length->total_length = str_length->links + str_length->uid + str_length->gid + str_length->size;
+    str_length->elements++;
 }
 
-void str_concat()
+void str_concat(char *str, t_length *str_length)
 {
-    char *str;
-    str = malloc () // сюда надо передавать кол-во элементов в дереве * макс длину строки (str_length->size + 255 + 12 (ctime) + 10 (rwx)
-// кол-во элементов в дереве тоже можно посчитать ф-ей str_elem_length;
-    // дальше обход дерева снова????? как сделать стрджойн с нужным кол-вом пробелов? кажется, надо его делать при обращении к конкретному элементу
 
+//    // дальше обход дерева снова????? как сделать стрджойн с нужным кол-вом пробелов? кажется, надо его делать при обращении к конкретному элементу
+//    ft_rbtforeach() // при переходе к новому элементу ft_strjoin(str, '\n'); затем в цикле ft_strjoin(' ') str_length - ft_strlen();
+//    *f = // функция, которая получает ссылку на строку, и в это строку конкатенирует все поля элемента rbt + \n в конце
+//            // я не хочу вызывать strjoin каждый раз при ее вызове, но хочу замаллочить строку сразу с начала под макс строку * кол-во элементов, и потом вызывать strcat
 
 
 

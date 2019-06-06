@@ -111,7 +111,9 @@ int check_file(char *str, int result)
                 printf("%d\n", i++);
                 printf("here's something long\n");
                 writing_file_data_long_dir(d_name, str, result, &file_info_tree);
-                str_elem_length(&file_info_tree);
+                str_elem_length(&file_info_tree); // здесь мы обошли все дерево и посчитали макс длину всех полей + кол-во элементов.
+                // дальше здесь делаем str, маллочим ее под кол-во элементов и передаем ее в след функцию, которая конкатенирует и собирает одну большую строку на вывод
+                // дальше ft_putstr(str);
                 void (*f)(t_rbtree *elem);
 //
                 f = &ft_putstr_rbt;
