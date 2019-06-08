@@ -146,7 +146,7 @@ void str_elem_length(t_rbtree **file_info_tree);
 
 void strlen_calc(t_rbtree *elem, t_length *str_length);
 
-void str_concat(char *str, t_length *str_length);
+void str_concat(char *str, t_rbtree *elem, t_length *str_length);
 
 void ft_rbt_putnbr(t_rbtree *elem);
 
@@ -174,9 +174,10 @@ size_t			ft_rbtsize(t_rbtree *root);
 
 t_rbtree		*ft_rbtroot(t_rbtree *elem);
 
-void        ft_rbtforeach(t_rbtree *root, void (*f)(t_rbtree *elem), int order);
+void        ft_rbtforeach(t_rbtree *root, void (*f)(t_rbtree *elem), int order); // от этой хуеты надо избавиться
 
 void        ft_rbtforeach_two(t_rbtree *root, t_length *str_length, void (*f)(t_rbtree *elem, t_length *str_length), int order);
 
+void        ft_rbtforeach_three(t_rbtree *root, t_length *str_length, void (*f)(t_rbtree *elem, t_length *str_length, char *str), int order, char *str);
 
 #endif

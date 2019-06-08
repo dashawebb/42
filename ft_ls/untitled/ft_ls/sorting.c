@@ -144,10 +144,11 @@ void str_elem_length(t_rbtree **file_info_tree)
     printf("size: %d\n", str_length.size);
     printf("total length: %d\n", str_length.total_length);
 
+    void (*func)(char *str, t_rbtree *elem, t_length *str_length);
     char *str;
-    str = (char *)malloc(sizeof(char) * (str_length.elements * (str_length.size + 270)));
-    f = &str_concat(str, str_length);
-    ft_rbtforeach_two(*file_info_tree, &str_length, f, INFIX);
+    str = (char *)malloc(sizeof(char) * (str_length.elements * (str_length.size + 270))); // надо избавиться от этого magic number
+    func = &str_concat;
+    ft_rbtforeach_three(*file_info_tree, &str_length, func, INFIX, str);
     ft_putstr(str);
     printf("закончил с выводом большой строки\n");
 
@@ -173,14 +174,22 @@ void strlen_calc(t_rbtree *elem, t_length *str_length)
     str_length->elements++;
 }
 
-void str_concat(char *str, t_length *str_length)
+void str_concat(char *str, t_rbtree *elem, t_length *str_length)
 {
 
 //    // дальше обход дерева снова????? как сделать стрджойн с нужным кол-вом пробелов? кажется, надо его делать при обращении к конкретному элементу
 //    ft_rbtforeach() // при переходе к новому элементу ft_strjoin(str, '\n'); затем в цикле ft_strjoin(' ') str_length - ft_strlen();
 //    *f = // функция, которая получает ссылку на строку, и в это строку конкатенирует все поля элемента rbt + \n в конце
 //            // я не хочу вызывать strjoin каждый раз при ее вызове, но хочу замаллочить строку сразу с начала под макс строку * кол-во элементов, и потом вызывать strcat
-
+    str = ft_strcat(str, (char *)((t_info *)elem->content->chmod_char));
+//
+//    printf("%s ", ((t_info *)elem->content)->chmod_char);
+//    printf("%d ", ((t_info *)elem->content)->links);
+//    printf("%s ", ((t_info *)elem->content)->uid);
+//    printf("%s ", ((t_info *)elem->content)->gid);
+//    printf("%zu ", ((t_info *)elem->content)->size);
+//    printf("%s ", ((t_info *)elem->content)->mod_time_char);
+//    printf("%s\n", ((t_info *)elem->content)->name);
 
 
 }
