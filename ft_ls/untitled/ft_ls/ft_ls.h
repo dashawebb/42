@@ -146,7 +146,7 @@ void str_elem_length(t_rbtree **file_info_tree);
 
 void strlen_calc(t_rbtree *elem, t_length *str_length);
 
-void str_concat(char *str, t_rbtree *elem, t_length *str_length);
+void str_concat(t_rbtree *elem, t_length *str_length, char *str);
 
 void ft_rbt_putnbr(t_rbtree *elem);
 

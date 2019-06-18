@@ -144,7 +144,7 @@ void str_elem_length(t_rbtree **file_info_tree)
     printf("size: %d\n", str_length.size);
     printf("total length: %d\n", str_length.total_length);
 
-    void (*func)(char *str, t_rbtree *elem, t_length *str_length);
+    void (*func)(t_rbtree *elem, t_length *str_length, char *str);
     char *str;
     str = (char *)malloc(sizeof(char) * (str_length.elements * (str_length.size + 270))); // надо избавиться от этого magic number
     func = &str_concat;
@@ -174,14 +174,15 @@ void strlen_calc(t_rbtree *elem, t_length *str_length)
     str_length->elements++;
 }
 
-void str_concat(char *str, t_rbtree *elem, t_length *str_length)
+void str_concat(t_rbtree *elem, t_length *str_length, char *str)
 {
 
 //    // дальше обход дерева снова????? как сделать стрджойн с нужным кол-вом пробелов? кажется, надо его делать при обращении к конкретному элементу
 //    ft_rbtforeach() // при переходе к новому элементу ft_strjoin(str, '\n'); затем в цикле ft_strjoin(' ') str_length - ft_strlen();
 //    *f = // функция, которая получает ссылку на строку, и в это строку конкатенирует все поля элемента rbt + \n в конце
 //            // я не хочу вызывать strjoin каждый раз при ее вызове, но хочу замаллочить строку сразу с начала под макс строку * кол-во элементов, и потом вызывать strcat
-    str = ft_strcat(str, (char *)((t_info *)elem->content->chmod_char));
+    str = ft_strcat(str, (char *)((t_info *)elem->content)->chmod_char);
+    str_length = 0; // это надо удалить
 //
 //    printf("%s ", ((t_info *)elem->content)->chmod_char);
 //    printf("%d ", ((t_info *)elem->content)->links);

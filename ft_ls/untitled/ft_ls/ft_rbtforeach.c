@@ -110,27 +110,27 @@ static void ft_rbtforeach_pre_three(t_rbtree *root, t_length *str_length, void (
     if (root->content)
         f(root, str_length, str);
     if (root->left->content)
-        ft_rbtforeach_pre_three(root->left, str_length, f);
+        ft_rbtforeach_pre_three(root->left, str_length, f, str);
     if (root->right->content)
-        ft_rbtforeach_pre_two(root->right, str_length, f);
+        ft_rbtforeach_pre_two(root->right, str_length, f3);
 }
 
 static void ft_rbtforeach_in_three(t_rbtree *root, t_length *str_length, void (*f)(t_rbtree *elem, t_length *str_length, char *str), char *str)
 {
     if (root->left->content)
-        ft_rbtforeach_in_three(root->left, str_length, f);
+        ft_rbtforeach_in_three(root->left, str_length, f, str);
     if (root->content)
         f(root, str_length, str);
     if (root->right->content)
-        ft_rbtforeach_in_three(root->right, str_length, f);
+        ft_rbtforeach_in_three(root->right, str_length, f, str);
 }
 
 static void ft_rbtforeach_post_three(t_rbtree *root, t_length *str_length, void (*f)(t_rbtree *elem, t_length *str_length, char *str), char *str)
 {
     if (root->left->content)
-        ft_rbtforeach_post_three(root->left, str_length, f);
+        ft_rbtforeach_post_three(root->left, str_length, f, str);
     if (root->right->content)
-        ft_rbtforeach_post_three(root->right, str_length, f);
+        ft_rbtforeach_post_three(root->right, str_length, f, str);
     if (root->content)
         f(root, str_length, str);
 }
@@ -138,7 +138,7 @@ static void ft_rbtforeach_post_three(t_rbtree *root, t_length *str_length, void 
 void        ft_rbtforeach_three(t_rbtree *root, t_length *str_length, void (*f)(t_rbtree *elem, t_length *str_length, char *str), int order, char *str)
 {
     if (!root || !f) {
-        printf("o nihuya %p   %p\n", root, f);
+        printf("no root or no func %p   %p\n", root, f);
         return;
     }
     if (order == PREFIX)
