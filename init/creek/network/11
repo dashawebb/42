@@ -1,0 +1,22 @@
+Using the previous command you get output like:
+
+traceroute: Warning: slash16.org has multiple addresses; using 13.32.42.139
+traceroute to slash16.org (13.32.42.139), 64 hops max, 52 byte packets
+ 1  192.168.20.1 (192.168.20.1)  1.472 ms  1.022 ms  1.039 ms
+ 2  192.168.2.9 (192.168.2.9)  0.299 ms  0.271 ms  0.239 ms
+ 3  217-67-187-49.in-addr.mastertelecom.ru (217.67.187.49)  3.875 ms  3.187 ms  6.651 ms
+ 4  mail.neoresurs.ru (217.67.176.130)  0.484 ms  0.611 ms  0.616 ms
+ 5  217-67-176-205.in-addr.mastertelecom.ru (217.67.176.205)  1.623 ms  1.550 ms  1.561 ms
+ 6  ae11-227.rt.mr.msk.ru.retn.net (87.245.253.69)  1.270 ms  1.245 ms  1.339 ms
+ 7  ae5-8.rt.rad.hki.fi.retn.net (87.245.233.174)  17.955 ms  18.027 ms  17.822 ms
+ 8  52.46.167.62 (52.46.167.62)  17.996 ms  18.954 ms  18.783 ms
+ 9  * * *
+10  * * *
+11  * * *
+12  * * *
+13  * * *
+14  * * *
+15  * * *
+16  server-13-32-42-139.hel50.r.cloudfront.net (13.32.42.139)  19.528 ms  20.404 ms  21.420 ms
+
+Line 1 is your local IP address, line 2 is the NAR router remaping the local IP to a public IP pointing to dc3 - the host of our public IP

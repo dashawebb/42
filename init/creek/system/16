@@ -1,0 +1,1 @@
+On Unix-like operating systems, the crontab command opens the cron table for editing. The cron table is the list of tasks scheduled to run at regular time intervals on the system.
